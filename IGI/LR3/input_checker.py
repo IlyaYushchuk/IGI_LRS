@@ -3,7 +3,8 @@ def int_check(*args):
         num = input()
         if is_int(num):
             if len(args) == 2 and not (args[0] <= int(num) <= args[1]):
-                print('\nError, enter the number in correct interval!\n')
+                print('\nError, enter the number in correct interval!')
+                print('Please, enter number between {lower} and {upper}'.format(lower = args[0], upper = args[1]))
             else:
                 return int(num)
         else:
@@ -14,7 +15,8 @@ def float_check(*args):
         num = input()
         if is_float(num):
             if len(args) == 2 and not (args[0] <= float(num) <= args[1]):
-                print('\nError, enter the number in correct interval!\n')
+                print('\nError, enter the number in correct interval!')
+                print('Please, enter number between {lower} and {upper}'.format(lower = args[0], upper = args[1]))
             else:
                 return float(num)
         else:

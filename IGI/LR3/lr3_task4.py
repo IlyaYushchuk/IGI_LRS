@@ -11,9 +11,8 @@ def task():
     """A function that performs the main task."""
     rep = True
     while rep:
-        input_string = 'So she was considering in her own mind, as well as she could, for the hot day made her feel very sleepy and stupid, whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.'
-        
-        words_list = input_string.replace(',', '').strip('.').lower().split(' ')
+        original_string = 'So she was considering in her own mind, as well as she could, for the hot day made her feel very sleepy and stupid, whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.'
+        words_list = original_string.replace(',', '').strip('.').lower().split(' ')
         descent_list = display_words_descend_order(words_list)
     
         print('1. Number of words with less than 7 characters:', finding_num_of_words_less_than_7(words_list))

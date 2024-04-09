@@ -6,6 +6,7 @@
 # 27.03.2024.
 
 import repeater
+import time
 
 def task():
     """A function that counts the number of digits in a string."""
@@ -18,18 +19,22 @@ def task():
 def print_answer(func):
     """A decorator function that prints the response to the console."""
     def wrapper(*args, **kwargs):
+        start = time.time()
         original = func(*args, **kwargs)
+        end = time.time()
+        print(func.__name__)
+        print('The function worked in', end - start)
         for i in range(10):
             print('Quantity of',i,'in string:', original[i])
         
     return wrapper
 
 @print_answer
-def number_character_count(input_string):
+def number_character_count(original_string):
     """A function that counts digits in a string."""
     try:
         numbers = [0,0,0,0,0,0,0,0,0,0]
-        for char in input_string:
+        for char in original_string:
             if char >= '0' and char <= '9':
                 numbers[int(char)] += 1
         return numbers
