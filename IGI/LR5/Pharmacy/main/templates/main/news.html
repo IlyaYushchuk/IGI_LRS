@@ -1,0 +1,9 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+    {% for new in info.info %}
+        <p>{{ new.title }}</p>
+        <p>{{ new.some_info }}</p>
+        <p>{{ new.text }}</p>
+    {% endfor %}
+{% endblock  %}

@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/menu.css" %}">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul class="topmenu">
+            <li><a href="{% url "index" %}">Главная</a></li>
+            <li><a href="{% url "about" %}">О компании</a></li>
+            <li><a href="{% url "news" %}">Новости</a></li>
+            <li><a href="" class="active">Товары<span class="fa fa-angle-down"></span></a>
+              <ul class="submenu">
+                {% for department in info.departments %}
+                    <li><a href="">{{ department.name }}<span class="fa fa-angle-down"></span></a>
+                        <ul class="submenu">
+                            <li><a href="">меню третьего уровня</a></li>
+                            <li><a href="">меню третьего уровня</a></li>
+                            <li><a href="">меню третьего уровня</a></li>
+                        </ul>
+                    </li>
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+    </nav>
+    {% block content %}
+    {% endblock  %}
+</body>
+</html>

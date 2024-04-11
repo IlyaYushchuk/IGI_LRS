@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+    <p>{{ info.info }}</p>
+    <select>
+        {% for department in info.departments %}
+            <option>{{ department.name }}</option>
+        {% endfor %}
+    </select>
+{% endblock  %}
