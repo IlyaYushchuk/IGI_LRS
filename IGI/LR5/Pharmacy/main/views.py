@@ -1,30 +1,24 @@
 import requests
 from django.shortcuts import render
 from .models import New
-from Medicines.models import Departments
 
-def load_medicines():
-    return Departments.objects.all()
+from functions.menu import load_medicines
 
 def index(request):
-    info = {
-        'info': 'qwerty',
-        'departments': load_medicines()
+    context = {
+        'departments': load_medicines(),
+        'info' : 'qwerty'
         }
-    context = {'info' : info}
-    return render(request, 'main/base.html', context)
+    return render(request, 'main/index.html', context)
 
 def about(request):
-    info = {
-        'info': '123456',
-        'departments': load_medicines()
+    context = {
+        'departments': load_medicines(),
+        'info' : '123456'
         }
-    context = {'info' : info}
     return render(request, 'main/about.html', context)
 
 def news(request):
-    #obj = New.objects.create(title='Head', some_info='some info about this new', text='this is text about this new that you choose.')
-
     news = New.objects.filter(title='Head')
     news_list = []
     for new in news:
@@ -34,9 +28,8 @@ def news(request):
             'text': new.text
         }
         news_list.append(temp)
-    info = {
-        'info': news_list,
-        'departments': load_medicines()
+    context = {
+        'departments': load_medicines(),
+        'info' : news_list
         }
-    context = {'info' : info}
     return render(request, 'main/news.html', context)

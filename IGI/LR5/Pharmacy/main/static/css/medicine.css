@@ -1,0 +1,42 @@
+.shop-item {
+    font-family:garamond;
+    position:relative;
+    border:1px solid black;
+    display:inline-block;
+    padding:10px;
+    transition:1s all;
+}
+
+.shop-item-hover {
+    opacity:0;
+    visibility:hidden;
+    background:darkorange;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    transition:1s all;
+}
+    
+.shop-item:hover .shop-item-hover {
+    opacity:0.5;
+    visibility:visible;
+}
+    
+.shop-item:hover {
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.container {
+    margin: auto;
+    padding: auto;
+    width: 1100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.name {
+    max-width: 250px;
+}
