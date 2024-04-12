@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static "css/med_self_page.css" %}">
+    <link rel="stylesheet" href="{% static "css/menu.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="container">
+        {% if med.discount %}
+            <span id="discount">Скидка {{ med.discount }}%</span>
+        {% endif %}
+        <div class="info_img">
+            {% if med.image %}
+                <div class="scale">
+                    <img src="{{ med.image.url }}" alt="photo_error" width="250px">
+                </div>
+            {% endif %}
+            <div class="info">
+                <p id="name">{{ med.name }}</p>
+                {% if med.discount %}
+                    <p id="quantity">В наличии: {{ med.quantity }}</p>
+                    <p class="price"><s>{{ med.price }}</s> BYN</p>
+                    <p id="discount_price">{{ med.sell_price }} BYN</p>
+                    <button class="buy">
+                        <a class="buy_text" href="">Купить</a>
+                    </button>
+                {% else %}
+                    <p class="price">{{ med.price }} BYN</p>
+                    <button class="buy">
+                        <a class="buy_text" href="">Купить</a>
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="description_container">
+            <p class="description1">Описание:</p>
+            <p class="description2">{{ med.description }}</p>
+        </div>
+        <div class="description_container">
+            <p class="description1">Инструкция:</p>
+            <p class="description2">{{ med.instruction }}</p>
+        </div>
+    </div>
+{% endblock %}

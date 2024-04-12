@@ -1,27 +1,42 @@
 {% extends "main/base.html" %}
 {% load static %}
 
+{% block links %}
+    <link rel="stylesheet" href="{% static "css/menu.css" %}">
+    <link rel="stylesheet" href="{% static "css/medicine.css" %}">
+{% endblock  %}
+
 {% block content %}
     <div class="container">
         {% for med in meds %}
             <figure class="shop-item">
-                {% if med.image %}
-                <div>
-                    <img src="{{ med.image.url }}" alt="photo_error" width="250px">
-                </div>
-                {% endif %}
-                <div class="shop-item-hover"></div>
-                <div>
-                    <p class="name">{{ med.name }}</p>
-                    {% if med.discount %}
-                        <p><s>{{ med.price }}</s> BYN</p>
-                        <p>{{ med.sell_price }} BYN</p>
-                        <span>Скидка {{ med.discount }} %</span>
-                    {% else %}
-                        <p>{{ med.price }} BYN</p>
-                    {% endif %}
+                <div class="container2">
+                    <div>
+                        {% if med.image %}
+                        <div>
+                            <img src="{{ med.image.url }}" alt="photo_error" width="250px">
+                            {% if med.discount %}
+                                <span id="discount">Скидка {{ med.discount }}%</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        <div class="shop-item-hover"></div>
+                        <div>
+                            <p>{{ med.name }}</p>
+                            {% if med.discount %}
+                                <p>Цена: <s>{{ med.price }}</s> BYN / {{ med.sell_price }} BYN</p>
+                            {% else %}
+                                <p>Цена: {{ med.price }} BYN</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <button>
+                            <a class="button" href="/medicines/{{ department_id }}/{{ category_id }}/{{ med.id }}/">Подробнее</a>
+                        </button>
+                    </div>
                 </div>
             </figure>
         {% endfor %}
     </div>
-{% endblock %}  
+{% endblock %}
