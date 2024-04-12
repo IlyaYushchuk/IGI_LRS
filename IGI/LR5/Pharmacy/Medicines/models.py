@@ -2,7 +2,6 @@ from django.db import models
 
 class Departments(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Название')
-    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True, verbose_name='URL')
 
     class Meta:
         verbose_name = 'Отдел'
@@ -13,7 +12,6 @@ class Departments(models.Model):
 
 class Categories(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Название')
-    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True, verbose_name='URL')
     department = models.ForeignKey(to=Departments, on_delete=models.CASCADE, verbose_name='Отдел')
 
     class Meta:
@@ -25,7 +23,6 @@ class Categories(models.Model):
 
 class Medicines(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Название')
-    slug = models.SlugField(max_length=100, unique=True, blank=True, null=True, verbose_name='URL')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
     discount = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Скидка')
     price = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Цена')

@@ -12,27 +12,27 @@
             <figure class="shop-item">
                 <div class="container2">
                     <div>
-                        {% if med.image %}
+                        {% if med.med.image %}
                         <div>
-                            <img src="{{ med.image.url }}" alt="photo_error" width="250px">
+                            <img src="{{ med.med.image.url }}" alt="photo_error" width="250px">
                             {% if med.discount %}
-                                <span id="discount">Скидка {{ med.discount }}%</span>
+                                <span id="discount">Скидка {{ med.med.discount }}%</span>
                             {% endif %}
                         </div>
                         {% endif %}
                         <div class="shop-item-hover"></div>
                         <div>
-                            <p>{{ med.name }}</p>
-                            {% if med.discount %}
-                                <p>Цена: <s>{{ med.price }}</s> BYN / {{ med.sell_price }} BYN</p>
+                            <p>{{ med.med.name }}</p>
+                            {% if med.med.discount %}
+                                <p>Цена: <s>{{ med.med.price }}</s> BYN / {{ med.med.sell_price }} BYN</p>
                             {% else %}
-                                <p>Цена: {{ med.price }} BYN</p>
+                                <p>Цена: {{ med.med.price }} BYN</p>
                             {% endif %}
                         </div>
                     </div>
                     <div>
                         <button>
-                            <a class="button" href="/medicines/{{ department_id }}/{{ category_id }}/{{ med.id }}/">Подробнее</a>
+                            <a class="button" href="/medicines/{{ med.dep_id }}/{{ med.cat_id }}/{{ med.med.id }}/">Подробнее</a>
                         </button>
                     </div>
                 </div>

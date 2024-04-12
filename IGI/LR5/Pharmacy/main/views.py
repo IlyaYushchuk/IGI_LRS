@@ -19,17 +19,17 @@ def about(request):
     return render(request, 'main/about.html', context)
 
 def news(request):
-    news = New.objects.filter(title='Head')
-    news_list = []
-    for new in news:
-        temp = {
-            'title': new.title,
-            'some_info': new.some_info,
-            'text': new.text
-        }
-        news_list.append(temp)
+    news = New.objects.all()
     context = {
         'departments': load_medicines(),
-        'info' : news_list
+        'news' : news
         }
     return render(request, 'main/news.html', context)
+
+def new(request, new_id):
+    new = New.objects.filter(id=new_id)[0]
+    context = {
+        'departments': load_medicines(),
+        'new' : new
+        }
+    return render(request, 'main/new.html', context)

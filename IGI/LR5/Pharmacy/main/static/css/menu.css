@@ -74,6 +74,11 @@ nav li:hover > .submenu {
   opacity: 1;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 #page {
     margin: auto;
     padding: auto;

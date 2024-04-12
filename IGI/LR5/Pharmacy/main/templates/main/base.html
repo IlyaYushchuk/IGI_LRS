@@ -15,10 +15,10 @@
             <li><a href="{% url "index" %}">Главная</a></li>
             <li><a href="{% url "about" %}">О компании</a></li>
             <li><a href="{% url "news" %}">Новости</a></li>
-            <li><a href="" class="active">Товары<span class="fa fa-angle-down"></span></a>
+            <li><a href="/medicines" class="active">Товары<span class="fa fa-angle-down"></span></a>
               <ul class="submenu">
                 {% for department in departments %}
-                    <li><a>{{ department.department.name }}<span class="fa fa-angle-down"></span></a>
+                    <li><a href="/medicines/{{ department.department.id }}">{{ department.department.name }}<span class="fa fa-angle-down"></span></a>
                         <ul class="submenu">
                             {% for category in department.categories %}
                                 <li><a href="/medicines/{{ department.department.id }}/{{ category.id }}/">{{ category.name }}</a></li>
