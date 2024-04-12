@@ -2,99 +2,96 @@
 # Lab №4.
 # Working with files, classes, serializers, regular expressions and standard libraries.
 # v 1.0.0.
-# Mahveenya Konstantin Evgenyevich.
-# 26.03.2024.
+# Yushchuk Ilya Alexandrovich
+# 8.04.2024.
 
 import TaskClass
+import datetime
 import pickle, csv
-import input_check, repeat
+import input_checker, repeater
 
 class Task1(TaskClass.Task):
     
     def __init__(self, task):
-        """Функция, инициализирующая объект класса."""
+        """Function initialize class object."""
         super().__init__(task)
-        self.tree_dict = {'яблоня': [100, 85], 'груша': [150, 105], 'береза': [130, 120]}
+        self.class_dict = {"Petrov A.A.": datetime.date(2006,2,15),
+                            "Ivanov V.K.": datetime.date(2006,2,2),
+                            "Grigoriev E.H.": datetime.date(2005,12,29)}
 
     @property
     def dict_init(self):
-        return self.tree_dict
+        return self.class_dict
     
     @dict_init.setter
-    def dict_init(self, new_dict):
-        self.tree_dict = new_dict
+    def dict_init(self, new_list):
+        self.class_dict = new_list
 
     def start_task(self):
-        """Функция, выполняющая основное задание."""
+        """Function give ability to interact with class."""
         rep = True
         while rep:
             self.curr_task(self.current_task)
+            rep_inside = True
+            while rep_inside:
+                action = input_checker.int_check('Choose activity\n'+
+                                                 '1)Get pupils by month\n'+
+                                                 '2)Get pupils from file with CSV\n'+
+                                                 '3)Set pupils in file with CSV\n'+
+                                                 '4)Get pupils from file with pickle\n'+
+                                                 '5)Set pupils in file with pickle\n'+
+                                                 '6)Exit\n', 1, 6)
+                match action:
+                    case 1:
+                        month = input_checker.int_check('Choose month ', 1, 12)
+                        print(self.select_pupils_by_birth_month(month))
+                    case 2:
+                        self.get_CSV()
+                        print(self.class_dict)
+                    case 3:
+                        self.set_CSV()
+                    case 4:
+                        self.get_pickle()
+                        print(self.class_dict)
+                    case 5:
+                        self.set_pickle()
+                    case 6:
+                        rep_inside = False
+                print()
+            rep = repeater.repeater("Task 1:")
 
-            if input_check.int_check('Put info in:\n1. pickle\n2. CSV\n', 1, 2) == 1:
-                self.set_get_pickle()
-            else:
-                self.set_get_CSV()
 
-            rep2 = True
-            while rep2:
-                var = input_check.int_check('Select which feature you want to demonstrate:\n1. Count of all trees\n2. Count of healphy trees\n3. Percent of sick trees\n4. Percent info for all trees\n5. Info for tree\n6. Exit\n', 1, 6)
-                if var == 1:
-                    print(self.all_trees_count())
-                elif var == 2:
-                    print(self.healthy_trees_count())
-                elif var == 3:
-                    print(str(self.percent_of_sick_trees()) + '%')
-                elif var == 4:
-                    gen = self.percent_for_each()
-                    for value in gen:
-                        print(f'Percent of {value[0]} in plot is {value[1]}%. Of which {value[2]}% are sick')
-                elif var == 5:
-                    value = self.info_for_tree(input().lower())
-                    if value:
-                        print(f'Count of trees: {value[0]}\nCount of healthy trees: {value[1]}')
-                    else:
-                        print('No such tree')
-                elif var == 6:
-                    rep2 = False
-            rep = repeat.repeat()
-            
-    def set_get_pickle(self):
-        """Функция, которая записывает в файл и считывает из файла данные с помощью pickle."""
-        with open('task1.txt', 'wb') as file:
-            pickle.dump(self.tree_dict, file)
+    def select_pupils_by_birth_month(self, month):
+        """Function return list of pupils with selected month"""
+        pupils = dict()
+        for key in self.class_dict.keys():
+            if self.class_dict[key].month == month:
+                pupils[key] = self.class_dict[key]
+        return pupils
+
+    def get_pickle(self):
+        """A function that reads data from a file using pickle."""
         with open('task1.txt', 'rb') as file:
-            self.tree_dict = pickle.load(file)
+            self.class_dict = pickle.load(file)
 
-    def set_get_CSV(self):
-        """Функция, которая записывает в файл и считывает из файла данные с помощью CSV."""
+    def set_pickle(self):
+        """A function that writes data to a file using pickle."""
+        with open('task1.txt', 'wb') as file:
+            pickle.dump(self.class_dict, file)
+        
+    def set_CSV(self):
+        """A function that writes data to a file using CSV."""
         with open('task1.csv', 'w', encoding='utf-8', newline='') as file:
             writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-            for key, values in self.tree_dict.items():
-                writer.writerow([key, *values])
-
+            for key, value in self.class_dict.items():
+                writer.writerow([key, value])
+        
+    def get_CSV(self):
+        """A function that reads data from a file using CSV."""
         with open('task1.csv', 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
             for row in reader:
-                self.tree_dict[row[0]] = row[1:3]
+                list =[int(s) for s in row[1].split('-')]
+                #print(list)
+                self.class_dict[row[0]] = datetime.date(*list)
 
-    def all_trees_count(self):
-        """Функция, которая считает количество деревьев на контрольном участке."""
-        return sum(int(values[0]) for values in self.tree_dict.values())
-    
-    def healthy_trees_count(self):
-        """Функция, которая считает количество здоровых деревьев на контрольном участке."""
-        return sum(int(values[1]) for values in self.tree_dict.values())
-    
-    def percent_of_sick_trees(self):
-        """Функция, которая считает процент больных деревьев на контрольном участке."""
-        return (self.all_trees_count() - self.healthy_trees_count()) / self.all_trees_count() * 100
-    
-    def percent_for_each(self):
-        """Функция - генератор, которая возвращает кортеж для с данными для каждого вида дерева."""
-        all_trees_count = self.all_trees_count()
-        for key, values in self.tree_dict.items():
-            yield (key, int(values[0]) / int(all_trees_count) * 100, 100 - (int(values[1]) / int(values[0]) * 100))
-
-    def info_for_tree(self, tree):
-        """Функция, которая возвращает информацию о конкретном дереве."""
-        return self.tree_dict.get(tree)

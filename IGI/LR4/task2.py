@@ -2,12 +2,13 @@
 # Lab №4.
 # Working with files, classes, serializers, regular expressions and standard libraries.
 # v 1.0.0.
-# Mahveenya Konstantin Evgenyevich.
-# 26.03.2024.
+# Yushchuk Ilya Alexandrovich.
+# 08.04.2024.
 
 import TaskClass
-import input_check, repeat
+import input_checker, repeater
 import re
+from zipfile import ZipFile
 
 class Task2(TaskClass.Task):
     
@@ -15,124 +16,143 @@ class Task2(TaskClass.Task):
     text = ''
 
     def __init__(self, task):
-        """Функция, инициализирующая объект класса."""
+        """A function that initializes a class object."""
         super().__init__(task)
 
     @property
     def filename_init(self):
-        """Функция-геттер для переменной filename."""
+        """Getter function for the filename variable."""
         return self.filename
     
     @filename_init.setter
     def dict_init(self, new_filename):
-        """Функция-сеттер для переменной filename."""
+        """Setter function for the filename variable."""
         self.filename = new_filename
 
     @property
     def text_init(self):
-        """Функция-геттер для переменной text."""
+        """Getter function for the text variable."""
         return self.filename
     
     @text_init.setter
     def text_init(self, new_text):
-        """Функция-сеттер для переменной text."""
+        """Setter function for the text variable."""
         self.text = new_text
 
     def start_task(self):
-        """Функция, выполняющая основное задание."""
+        """A function that performs the main task."""
         rep = True
         while rep:
             
             self.get_text()
-            #print(self.text)
-            #self.find_average_sentence_len()
-
             self.general_task()
             self.variant_task()
+            self.zip_result_file()
+            print(self.find_file_info_in_zip("task2_resaults.txt"))
             
-            rep = repeat.repeat()
+
+            rep = repeater.repeater("Task 2:")
             
     def get_text(self):
-        """Функция, которая считывает из файла данные."""
+        """A function that reads data from a file."""
         with open(self.filename, 'r', encoding='utf-8') as file:
             self.text = file.read()
     
     def general_task(self):
-        """Функция, записывающая в файл результаты общего задания."""
+        """A function that writes the results of a shared job to a file."""
         with open('task2_resaults.txt', 'w', encoding='utf-8') as file:
-            file.write(f'Общее задание\n\n')
-            file.write(f'Количество предложений в тексте: {self.find_sentence_count()}\n')
-            file.write('\tИз них:\n')
+            file.write(f'General tasks\n\n')
+            file.write(f'Number of sentences in text: {self.find_sentence_count()}\n')
             type_count = self.find_sentence_type_count()
-            file.write(f'\tПовествовательные: {type_count[0]}\n')
-            file.write(f'\tПобудительные: {type_count[1]}\n')
-            file.write(f'\tВопросительные: {type_count[2]}\n')
-            file.write(f'Средняя длина предложения: {self.find_average_sentence_len()}\n')
-            file.write(f'Средняя длина слова: {self.find_average_word_len()}\n')
-            file.write(f'Количество смайликов в тексте: {self.find_smiles_count()}\n')
+            file.write(f'\tNarrative: {type_count[0]}\n')
+            file.write(f'\tIncentive: {type_count[1]}\n')
+            file.write(f'\tInterrogative: {type_count[2]}\n')
+            file.write(f'Average sentence length: {self.find_average_sentence_len()}\n')
+            file.write(f'Average word length: {self.find_average_word_len()}\n')
+            file.write(f'Number of emoticons in the text: {self.find_smiles_count()}\n')
+            
 
     def variant_task(self):
-        """Функция, записывающая в файл результаты задания варианта."""
+        """A function that writes the results of specifying a variant to a file."""
         with open('task2_resaults.txt', 'a', encoding='utf-8') as file:
-            file.write('\nЗадание варианта\n\n')
-            file.write('Полученные даты в тексте:\n')
-            for elem in self.find_dates():
-                file.write(f'{elem}\n')
-            file.write('Слова, у которых 3-я с конца буква - согласная, а предпоследняя - гласная:\n')
-            for elem in self.word_list():
-                file.write(f'{elem}\n')
-            file.write(f'Количество слов на гласную букву: {self.start_with_vowel()}\n')
-            self.double_letter()
-            file.write(f'\nСлова с повторяющейся буквой\n')
-            for word, index in self.double_letter():
-                file.write(f'Слово: {word} Порядковый номер: {index}\n')
-            file.write(f'\nСлова в алфавитном порядке\:n')
-            for word in sorted(self.all_words(), key=str.lower):
+            file.write('\nOption 29 tasks\n\n')
+            file.write('Words with lower case and numbers:\n')
+            for word in self.find_lower_case_digits_words():
                 file.write(f'{word}\n')
+            file.write('IP adresses:\n')
+            for ip in self.find_ip_adresses():
+                file.write(f'{ip}\n')
+            file.write('Number of loser case letters: ')
+            file.write(f'{self.find_number_of_losercase_letters()}\n')
+            file.write('First word with \'v\' letter and its number:\n')
+            file.write(f'Word: {self.find_word_with_v_letter()[0]}\nNumber: {self.find_word_with_v_letter()[1]}\n')
+            file.write('Text without s-start words\n')
+            file.write(f'{self.find_test_without_s_words()}')
 
+#----------basic functions-------------------
     def find_sentence_count(self):
-        """Функция, подсчитывающая количество предложений в тексте."""
+        """A function that counts the number of sentences in a text."""
         return len(re.findall(r'[\.!?]', self.text))
     
     def find_sentence_type_count(self):
-        """Функция, подсчитывающая количество предложений разных типов."""
+        """A function that counts the number of sentences of different types."""
         list = re.findall(r'[\.!?]', self.text)
         return (list.count('.'), list.count('!'), list.count('?'))
     
     def find_average_sentence_len(self):
-        """Функция, подсчитывающая среднюю длину предложения в символах."""
+        """A function that calculates the average length of a sentence in characters."""
         return sum(len(elem) for elem in re.findall(r'\w+', self.text)) / self.find_sentence_count()
     
     def find_average_word_len(self):
-        """Функция, подсчитывающая среднюю длину слова в текст в символах."""
+        """A function that calculates the average length of a word in a text in characters."""
         list = re.findall(r'\w+', self.text)
         return sum(len(elem) for elem in list) / len(list)
     
     def find_smiles_count(self):
-        """Функция, подсчитывающая количество смайликов в тексте."""
+        """A function that counts the number of emoticons in the text."""
         return len(re.findall(r'[:;]-*(\)+|\(+|\]+|\[+)', self.text))
     
-    def find_dates(self):
-        """Функция, возвращающая даты из текста."""
-        return re.findall(r'\d+', self.text)
-    
-    def word_list(self):
-        """Функция, возвращающая список слов, где 3 с конца буква - согласная, а предпоследняя - гласная."""
-        return re.findall(r'\w*[qwrtplkjhgfdszxcvbnm][aeiouy][^\s]\b', self.text)
-    
-    def start_with_vowel(self):
-        """Функция, возвращающая количество слов с первой гласной буквой."""
-        return len(re.findall(r'^[aeiouyAEIOUY]\w*\b| ([aeiouyAEIOUY]\w*\b)', self.text))#
-    
-    def double_letter(self):
-        """Функция, возвращающая кортеж с словом, где есть повторяющиееся 2 буквы подряд, а также его порядковый номер."""
-        double_words = []
-        all_words = self.all_words()
-        for match in re.finditer(r'\w*([a-zA-Z])\1\w*\b', self.text):
-            double_words.append(match.group(0))
-        for elem in double_words:
-            yield (elem, all_words.index(elem) + 1)
+    def zip_result_file(self):
+        with ZipFile("zipped_result.zip","w") as zip_file:
+            zip_file.write("task2_resaults.txt")
+            zip_file.write("task2.txt")
+            
 
-    def all_words(self):
-        """Функция, возвращающая список всех слов в тексте."""
-        return re.findall(r'\w+', self.text)
+    def find_file_info_in_zip(self, file):
+        with ZipFile("zipped_result.zip","r") as zip_file:
+            return zip_file.getinfo(file)
+#----------end of basic functions------------------
+
+#----------special functions-----------------------
+
+    def find_lower_case_digits_words(self):
+        """The function finds words with lowercase letters and numbers"""
+        #TODO make function better
+        words = re.findall(r'\b[a-z]+\d+\w*\b', self.text)
+        return words
+
+    def find_ip_adresses(self):
+        """The function finds IP addresses in text"""
+        ip_adresses = re.findall(r'\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b',self.text)
+        return ip_adresses
+
+    def find_number_of_losercase_letters(self):
+        """The function finds finds the number of lowercase letters"""
+        list_of_lowercase = re.findall(r'[a-z]', self.text)
+        return len(list_of_lowercase)
+    
+    def find_word_with_v_letter(self):
+        """The function finds the first word with the symbol v and its number"""
+        all_words = re.findall(r'\w+', self.text)
+        for index, word in enumerate(all_words):
+            if 'v' in word:
+               return word, index + 1 
+            
+    def find_test_without_s_words(self):
+            """The function returns text without words starting with s."""
+            text = self.text
+            s_words = re.findall(r'\b([sS][\w]*)\b', self.text)
+            for word in s_words:
+                text = text.replace(word, '')
+            return text
+   

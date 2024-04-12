@@ -2,62 +2,73 @@
 # Lab №4.
 # Working with files, classes, serializers, regular expressions and standard libraries.
 # v 1.0.0.
-# Mahveenya Konstantin Evgenyevich.
-# 26.03.2024.
+# Yushchuk Ilya Alexandrovich.
+# 08.04.2024.
 
 from abc import ABC, abstractmethod
+import math
 import TaskClass
-import repeat, input_check
+import repeater, input_checker
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 class Color():
     def __init__(self, color):
-        """Функция, инициализирующая объект класса."""
+        """A function that initializes a class object."""
         self.color = color
 
     @property
     def color_init(self):
-        """Функция-геттер для переменной color."""
+        """Getter function for the color variable."""
         return self.color
     
     @color_init.setter
     def color_init(self, new_color):
-        """Функция-сеттер для переменной color."""
+        """Setter function for the color variable."""
         self.color = new_color
 
     @color_init.deleter
     def x(self):
-        """Функция-делетер для переменной color."""
+        """Deleter function for the color variable."""
         del self.color
 
     def __str__(self):
-        """Магический метод, переопределяющий __str__."""
+        """Magic method that overrides __str__."""
         return self.color
 
 class Geometric_figure(ABC):
 
     @abstractmethod
     def square(self):
-        """Функция, вычисляющая площадь фигуры."""
+        """A function that calculates the area of ​​a figure."""
 
-class Rectangle(Geometric_figure):
+class Regular_n_gon(Geometric_figure):
 
-    def __init__(self, name, length, color):
-        """Функция, инициализирующая объект класса."""
+    def __init__(self, name, length, n, color):
+        """A function that initializes a class object."""
         super().__init__()
+        self.n = n
         self.length = length
         self.color = Color(color)
         self.name = name
 
     @property
+    def get_n(self):
+        """Getter function for variable n."""
+        return self.n
+    
+    @get_n.setter
+    def set_n(self, new_n):
+        """Setter function for variable n."""
+        self.n = new_n
+    @property
     def get_length(self):
-        """Функция-геттер для переменной length."""
+        """Getter function for the length variable."""
         return self.length
     
     @get_length.setter
     def set_length(self, new_length):
-        """Функция-сеттер для переменной length."""
+        """Setter function for the length variable."""
         self.length = new_length
 
     @property
@@ -67,51 +78,60 @@ class Rectangle(Geometric_figure):
     
     @get_name.setter
     def set_name(self, new_name):
-        """Функция-сеттер для переменной name."""
+        """Setter function for the name variable."""
         self.name = new_name
 
     def square(self):
-        """Переопределенная функция, вычисляющая площадь квадрата."""
-        return self.length ** 2
+        """An overridden function that calculates the area of ​​a square."""
+        return self.n / 4 * self.length**2 * 1 / math.tan(math.pi/self.n)
     
     def draw(self, text):
-        """Функция, отрисовывающая квадрат."""
+        """The function draws a regular n-gon with side a."""
         try:
             fig, ax = plt.subplots()
-            square = patches.Rectangle((self.length / 2, self.length / 2), self.length, self.length, facecolor=str(self.color))
-            circle = patches.Circle((self.length, self.length), radius=self.length / 2, edgecolor='black', facecolor='none')
-            ax.add_patch(square)
-            ax.add_patch(circle)
-            plt.xlim(0, self.length * 2)
-            plt.ylim(0, self.length * 2)
+            radius = self.length / (2 * math.sin(math.pi/(2*self.n)))
+            #print(f'radius {radius}')
+            dots = []
+            for i in range(self.n):
+                #print(((math.pi * 2 * i)/self.n) * 180 / math.pi)
+                dots.append((radius*math.cos((math.pi * 2 * i)/self.n),radius*math.sin((math.pi * 2 * i)/self.n)))
+                
+            #print(dots)
+            polygon = patches.Polygon(dots, facecolor = str(self.color))
+            
+            ax.add_patch(polygon)
+            plt.xlim(-self.length * self.n/2, self.length * self.n/2)
+            plt.ylim(-self.length * self.n/2, self.length * self.n/2)
             plt.gca().set_aspect('equal')
             plt.title(text)
             plt.savefig('task4.png')
             plt.show()
         except ValueError:
-            print('Был введен некорректный цвет')
+            print('Incorrect color')
             plt.close()
     
     def __str__(self):
-        """Магический метод, переопределяющий __str__."""
-        return 'Длина стороны квадрата: {}\nЦвет квадрата: {}'.format(self.length, str(self.color))
+        """Magic method that overrides __str__."""
+        return 'Regular {}-polygon side length: {}\nPolygon square {}\nPolygon color: {}'.format(self.n ,self.length, self.square(), str(self.color))
 
 class Task4(TaskClass.Task):
     def __init__(self, task):
-        """Функция, инициализирующая объект класса."""
+        """A function that initializes a class object."""
         super().__init__(task)
 
     def start_task(self):
-        """Функция, выполняющая основное задание."""
+        """A function that performs the main task."""
         rep = True
         while rep:
 
-            name = input('Введите название фигуры:\n')
-            length = 2 * input_check.float_check('Введите радиус окружности, около которой нужно описать квадрат:\n', 0, float('inf'))
-            color = input('Введите цвет квадрата:\n')
-            text = input('Введите подпись к картинке:\n')
-            rect = Rectangle(name, length, color)
-            #print(rect.name)
-            rect.draw(text)
-
-            rep = repeat.repeat()
+            name = input('Enter the name of the figure:\n')
+            length = input_checker.float_check('Input length of a:\n', 0, float('inf'))
+            color = input('Enter the color of the square:\n')
+            text = input('Enter a caption for the picture:\n')
+            n = input_checker.int_check('Input n:\n',3,100)
+            pol = Regular_n_gon(name, length, n, color)
+            #rect = Regular_n_gon("lox", 2, 5, "green")
+            
+            pol.draw(text)
+            print(pol.__str__())
+            rep = repeater.repeater("Task 4: ")
