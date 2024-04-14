@@ -13,7 +13,7 @@ img {
     border-radius: 100px;
 }
 
-p {
+.info p {
     padding: 20px;
     white-space: pre-line;
     text-align: justify;

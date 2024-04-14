@@ -3,8 +3,35 @@
 
 {% block links %}
     <link rel="stylesheet" href="{% static "css/menu.css" %}">
+    <link rel="stylesheet" href="{% static "css/new.css" %}">
+    <link rel="stylesheet" href="{% static "css/weather.css" %}">
 {% endblock  %}
 
 {% block content %}
-    
+    <div id="weather">
+        {% for itm in weather %}
+            <div class="one_elem">
+                <div>
+                    <img src="http://openweathermap.org/img/wn/{{ itm.icon }}@2x.png" alt="фото">
+                </div>
+                <div>
+                    <p>{{ itm.city }}</p>
+                    <p>{{ itm.temp }} <sup>0</sup>C</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h1>Последняя опубликованная новость</h1>
+    <h1>{{ new.title }}</h1>
+    <div class="new">
+        {% if new.image %}
+            <div id="img">
+                <img src="{{ new.image.url }}" alt="photo_error">
+            </div>
+        {% endif %}
+        <div class="info">
+            <p>{{ new.text }}</p>
+        </div>
+    </div>
 {% endblock  %}

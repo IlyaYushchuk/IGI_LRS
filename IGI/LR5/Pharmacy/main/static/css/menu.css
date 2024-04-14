@@ -85,6 +85,7 @@ p {
     width: 1100px;
     background-color: rgb(255, 255, 255);
     min-height: 90vh;
+    position: relative;
 }
 
 .footer{
