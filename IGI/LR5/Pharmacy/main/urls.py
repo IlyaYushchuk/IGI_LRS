@@ -9,4 +9,8 @@ urlpatterns = [
     path('policy/', views.confidentialPolicy, name='policy'),
     path('news/', views.news, name='news'),
     path('news/<int:new_id>/', views.new, name='new'),
+    path('vacancies/', views.vacancies, name='vacancies'),
+    path('promotions/', views.promotions, name='promotions'),
+    path('promotions/archive/', views.promotions, name='promotions_archive'),
+    path('promotions/current/', views.promotions, name='promotions_current'),
 ]

@@ -5,12 +5,16 @@
     <link rel="stylesheet" href="{% static "css/menu.css" %}">
     <link rel="stylesheet" href="{% static "css/medicine.css" %}">
     <link rel="stylesheet" href="{% static "css/filter.css" %}">
+    <link rel="stylesheet" href="{% static "css/search.css" %}">
 {% endblock  %}
 
 {% block content %}
     <div id="filter">
-        <form method="get">
+        <form action="{% if request.GET.q %}{% url "medicines:search" %}{% else %}{% url "medicines:deps" %}{% endif %}" method="get">
             <input type="checkbox" id="discount-input" name="on_sale", value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+            {% if request.GET.q %}
+                <input type="hidden" name="q" value="{{request.GET.q}}"></input>
+            {% endif %}
             <label for="discount-input">Только товары со скидкой</label>
             <p>Сортировка:</p>
             <div>
@@ -30,7 +34,14 @@
             </div>
         </form>
     </div>
+    <div id="search_container">
+        <form action="{% url "medicines:search" %}" role="search" method="get">
+            <input type="search" placeholder="Search" name="q" aria-label="Search" value="{% if request.GET.q %}{{ request.GET.q }}{% endif %}">
+            <button type="submit">Найти</button>
+        </form>
+    </div>
     <div class="container">
+        
         {% for med in meds %}
             <figure class="shop-item">
                 <div class="container2">

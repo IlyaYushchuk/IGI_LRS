@@ -5,6 +5,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=19)
     image = models.ImageField(blank=True, null=True, verbose_name='Аватар', upload_to='users_images/')
     surname = models.CharField(max_length=150, unique=True, blank=True, null=True)
+    position = models.CharField(max_length=150, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Пользователь'

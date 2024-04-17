@@ -2,10 +2,12 @@ from django.shortcuts import render
 from .models import Medicines, Categories, Departments
 
 from functions.menu import load_medicines
+from .utils import q_search
 
 def medicines(request, dep_id, cat_id):
     discount = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', 'default')
+    query = request.GET.get('q', None)
 
     cat = Categories.objects.filter(id=cat_id)[0]
 
@@ -35,9 +37,13 @@ def medicines(request, dep_id, cat_id):
 def department(request, dep_id):
     discount = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', 'default')
+    query = request.GET.get('q', None)
 
-    dep = Departments.objects.filter(id=dep_id)[0]
     meds = []
+    #if query:
+    #    meds = q_search(query)
+    #else:
+    dep = Departments.objects.filter(id=dep_id)[0]
     for cat in Categories.objects.filter(department=dep):
         for med in Medicines.objects.filter(category=cat):
             temp = {
@@ -64,17 +70,21 @@ def department(request, dep_id):
 def departments(request):
     discount = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', 'default')
+    query = request.GET.get('q', None)
 
     meds = []
-    for dep in Departments.objects.all():
-        for cat in Categories.objects.filter(department=dep):
-            for med in Medicines.objects.filter(category=cat):
-                temp = {
-                    'dep_id': dep.id,
-                    'cat_id': cat.id,
-                    'med': med
-                }
-                meds.append(temp)
+    if query:
+        meds = q_search(query)
+    else:
+        for dep in Departments.objects.all():
+            for cat in Categories.objects.filter(department=dep):
+                for med in Medicines.objects.filter(category=cat):
+                    temp = {
+                        'dep_id': dep.id,
+                        'cat_id': cat.id,
+                        'med': med
+                    }
+                    meds.append(temp)
 
     if discount:
         meds = [elem for elem in meds if elem['med'].discount != 0]

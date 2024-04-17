@@ -1,8 +1,9 @@
 import requests
 from django.shortcuts import render
-from .models import New
+from .models import New, Vacancy, Promotion
 
 from functions.menu import load_medicines
+from datetime import datetime
 
 def index(request):
     appid = '53463e2c2ed3172e0488ab9e52e72b44'
@@ -60,3 +61,30 @@ def new(request, new_id):
         'new' : new
         }
     return render(request, 'main/new.html', context)
+
+def vacancies(request):
+    vacancies = Vacancy.objects.all()
+    context = {
+        'departments': load_medicines(),
+        'vacancies': vacancies
+        }
+    return render(request, 'main/vacancy.html', context)
+
+def promotions(request):
+    date_now = datetime.now()
+    promotions = []
+    if '/promotions/archive/' == request.path:
+        promotions = Promotion.objects.filter(date__lte=date_now)
+    elif '/promotions/current/' == request.path:
+        promotions = Promotion.objects.filter(date__gte=date_now)
+    else:
+        promotions = Promotion.objects.all()
+
+    promotions = [*promotions]
+    promotions.sort(key=lambda elem: elem.date)
+    
+    context = {
+        'departments': load_medicines(),
+        'promotions': promotions
+        }
+    return render(request, 'main/promotion.html', context)
