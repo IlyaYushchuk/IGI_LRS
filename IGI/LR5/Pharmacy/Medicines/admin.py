@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Departments, Categories, Medicines, Providers
+from .models import Departments, Categories, Medicines, Providers, Sales
 
 @admin.register(Departments)
 class DepartmentsAdmin(admin.ModelAdmin):
@@ -26,3 +26,9 @@ class ProvidersAdmin(admin.ModelAdmin):
     list_editable = ['price']
     search_fields = ['name', 'medicine']
     list_filter = ['name', 'price']
+
+@admin.register(Sales)
+class SalesAdmin(admin.ModelAdmin):
+    list_display = ['medicine', 'quantity']
+    list_editable = ['quantity']
+    list_filter = ['quantity']

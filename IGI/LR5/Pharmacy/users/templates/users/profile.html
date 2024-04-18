@@ -7,6 +7,10 @@
 {% endblock  %}
 
 {% block content %}
+    <p>Таймзона - {{ tzinfo }}</p>
+    <p>Время - {{ cur_time }}</p>
+    <p>UTC - {{ utc_time }}</p>
+    <p id="calendar">{{ calendar|safe }}</p>
     <div class="profile">
         {% if user.image %}
             <div>

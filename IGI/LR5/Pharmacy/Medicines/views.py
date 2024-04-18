@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Medicines, Categories, Departments
+from .models import Medicines, Categories, Departments, Sales
 
 from functions.menu import load_medicines
 from .utils import q_search
@@ -40,9 +40,7 @@ def department(request, dep_id):
     query = request.GET.get('q', None)
 
     meds = []
-    #if query:
-    #    meds = q_search(query)
-    #else:
+
     dep = Departments.objects.filter(id=dep_id)[0]
     for cat in Categories.objects.filter(department=dep):
         for med in Medicines.objects.filter(category=cat):
@@ -108,3 +106,22 @@ def medicine(request, dep_id, cat_id, med_id):
         'med': med,
         }
     return render(request, "Medicines/medicine.html", context)
+
+def sales(request):
+    sales = Sales.objects.all()
+
+    info = []
+
+    for sale in sales:
+        temp = {
+            'name': sale.medicine.name,
+            'quantity': sale.quantity,
+            'income': sale.quantity * sale.medicine.sell_price(),
+        }
+        info.append(temp)
+
+    context = {
+        'departments': load_medicines(),
+        'sales': info
+        }
+    return render(request, 'main/sale.html', context)

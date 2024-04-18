@@ -1,9 +1,12 @@
 import requests
 from django.shortcuts import render
 from .models import New, Vacancy, Promotion
+from users.models import User
+from Medicines.models import Sales
 
 from functions.menu import load_medicines
 from datetime import datetime
+import statistics
 
 def index(request):
     appid = '53463e2c2ed3172e0488ab9e52e72b44'
@@ -88,3 +91,27 @@ def promotions(request):
         'promotions': promotions
         }
     return render(request, 'main/promotion.html', context)
+
+def statistic(request):
+    users_count = len(User.objects.all())
+    
+    sales = Sales.objects.all()
+    sales_incomes = [elem.medicine.price * elem.quantity for elem in sales]
+
+    general_income = sum(sales_incomes)
+    popular_med = max([elem for elem in sales], key=lambda elem: elem.quantity).medicine.name
+    most_income_med = max([elem for elem in sales], key=lambda elem: elem.medicine.price * elem.quantity).medicine.name
+
+    context = {
+        'departments': load_medicines(),
+        'users_count': users_count,
+        'income': general_income,
+        'popular_med': popular_med,
+        'most_income_med': most_income_med,
+        'sales_average': statistics.mean(sales_incomes),
+        'sales_mode': statistics.mode(sales_incomes),
+        'sales_median': statistics.median(sales_incomes),
+        'sales_variance': statistics.variance(sales_incomes),
+        'sales_stdev': statistics.stdev(sales_incomes)
+        }
+    return render(request, 'main/statistic.html', context)

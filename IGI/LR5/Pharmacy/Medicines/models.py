@@ -52,3 +52,14 @@ class Providers(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Sales(models.Model):
+    medicine = models.ForeignKey(to=Medicines, on_delete=models.CASCADE, verbose_name='Товар')
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
+
+    class Meta:
+        verbose_name = 'Продажа'
+        verbose_name_plural = 'Продажи'
+
+    def __str__(self):
+        return self.medicine.name

@@ -5,7 +5,8 @@ from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, ReviewForm
 from users.models import User, Questions, Review
-from django.utils import timezone
+from datetime import datetime, timezone
+import pytz, calendar
 
 from functions.menu import load_medicines
 
@@ -69,6 +70,10 @@ def questions(request):
     return render(request, 'users/question-answer.html', context)
 
 def profile(request):
+    minsk_zone = pytz.timezone('Europe/Minsk')
+    date = datetime.now(minsk_zone)
+    utcdate = date.astimezone(pytz.utc)
+
     if request.method == 'POST':
         form = ReviewForm(data=request.POST)
         grade = request.POST['grade']
@@ -77,16 +82,23 @@ def profile(request):
             review = Review()
             review.review = text
             review.grade = grade
-            review.date = timezone.now()
+            review.date = datetime.now(minsk_zone)
             review.user = request.user
             review.save()
             return HttpResponseRedirect(reverse('users:reviews'))
     else:
         form = ReviewForm()
+    
+    c = calendar.TextCalendar()
+    s = c.formatmonth(date.year, date.month)
 
     context = {
         'departments': load_medicines(),
-        'form': form
+        'form': form,
+        'cur_time': str(date.hour) + ':' + str(date.minute) + '+' + str(date.utcoffset()),
+        'utc_time': str(utcdate.hour) + ':' + str(utcdate.minute) + '+' + str(utcdate.utcoffset()),
+        'tzinfo': date.tzinfo,
+        'calendar': s
     }
     return render(request, 'users/profile.html', context)
 
