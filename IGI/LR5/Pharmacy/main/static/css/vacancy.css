@@ -24,3 +24,31 @@ h1 {
     text-align: justify;
     margin: 5px;
 }
+
+.add_review {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;   
+    padding: 15px; 
+    padding-left: 40px;
+    padding-right: 40px;
+    font-weight: bold;
+    border-radius: 30px;
+    background-color: rgb(91, 165, 91);
+    border: 0;
+}
+
+.add_review:hover {
+    background-color: rgb(112, 194, 112);
+    color: rgba(255, 255, 255, 0.89);
+}
+
+#h1_button {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#h1_button a {
+    display: block;
+    text-align: center;
+    align-items: center;
+}

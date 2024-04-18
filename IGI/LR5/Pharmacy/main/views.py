@@ -81,7 +81,7 @@ def promotions(request):
         promotions = Promotion.objects.all()
 
     promotions = [*promotions]
-    promotions.sort(key=lambda elem: elem.date)
+    promotions.sort(key=lambda elem: elem.date, reverse=True)
     
     context = {
         'departments': load_medicines(),

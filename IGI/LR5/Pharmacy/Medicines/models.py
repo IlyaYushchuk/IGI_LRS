@@ -40,3 +40,15 @@ class Medicines(models.Model):
     
     def sell_price(self):
         return round(self.price - self.discount / 100 * self.price, 2)
+    
+class Providers(models.Model):
+    name = models.CharField(max_length=100, unique=True, verbose_name='Компания-поставщик')
+    medicine = models.ForeignKey(to=Medicines, on_delete=models.CASCADE, verbose_name='Товар')
+    price = models.PositiveIntegerField(default=0, verbose_name='Закупочная цена')
+
+    class Meta:
+        verbose_name = 'Поставщик'
+        verbose_name_plural = 'Поставщики'
+
+    def __str__(self):
+        return self.name

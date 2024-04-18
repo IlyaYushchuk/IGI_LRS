@@ -3,8 +3,11 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
-from users.models import User
+from users.forms import UserLoginForm, UserRegistrationForm, ReviewForm
+from users.models import User, Questions, Review
+from django.utils import timezone
+
+from functions.menu import load_medicines
 
 def login(request):
     if request.method == 'POST':
@@ -20,6 +23,7 @@ def login(request):
         form = UserLoginForm()
 
     context = {
+        'departments': load_medicines(),
         'form': form
     }
 
@@ -37,7 +41,8 @@ def registration(request):
         form = UserRegistrationForm()
 
     context = {
-            'form': form
+        'departments': load_medicines(),
+        'form': form
         }
     return render(request, 'users/registration.html', context)
 
@@ -49,6 +54,47 @@ def staff(request):
     users = User.objects.filter(is_staff=True)
 
     context = {
+        'departments': load_medicines(),
         'staff': users
     }
     return render(request, 'users/staff.html', context)
+
+def questions(request):
+    questions = Questions.objects.all()
+
+    context = {
+        'departments': load_medicines(),
+        'questions': questions[::-1]
+    }
+    return render(request, 'users/question-answer.html', context)
+
+def profile(request):
+    if request.method == 'POST':
+        form = ReviewForm(data=request.POST)
+        grade = request.POST['grade']
+        text = request.POST['review']
+        if grade and text:
+            review = Review()
+            review.review = text
+            review.grade = grade
+            review.date = timezone.now()
+            review.user = request.user
+            review.save()
+            return HttpResponseRedirect(reverse('users:reviews'))
+    else:
+        form = ReviewForm()
+
+    context = {
+        'departments': load_medicines(),
+        'form': form
+    }
+    return render(request, 'users/profile.html', context)
+
+def reviews(request):
+    reviews = Review.objects.all()
+
+    context = {
+        'departments': load_medicines(),
+        'reviews': reviews[::-1]
+    }
+    return render(request, 'users/review.html', context)
