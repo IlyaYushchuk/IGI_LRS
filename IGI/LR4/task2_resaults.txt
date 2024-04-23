@@ -11,9 +11,11 @@ Number of emoticons in the text: 4
 Option 29 tasks
 
 Words with lower case and numbers:
-hello123
-dgg4
-sdf3
+('', '2016\\2019\\mac\\online')
+('sdf.213.fsd.324', '')
+('hello123', '')
+('dgg4', '')
+('sdf3', '')
 IP adresses:
 123.124.42.4
 124.42.124.421

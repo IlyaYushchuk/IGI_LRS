@@ -128,7 +128,7 @@ class Task2(TaskClass.Task):
     def find_lower_case_digits_words(self):
         """The function finds words with lowercase letters and numbers"""
         #TODO make function better
-        words = re.findall(r'\b[a-z]+\d+\w*\b', self.text)
+        words = re.findall(r'(\b\S*[a-z]\S*\d\S*\b)|(\b\S*\d\S*[a-z]\S*\b)', self.text)
         return words
 
     def find_ip_adresses(self):
