@@ -30,7 +30,7 @@ class Task5(TaskClass.Task):
             print(f'The standard deviation of the main diagonal, calculated using the numpy method: {round(self.std(), 2)}\n')
             print(f'The standard deviation of the main diagonal, calculated manually: {round(self.custom_std(), 2)}\n')
 
-            rep = repeater.repeater()
+            rep = repeater.repeater("Task 5:")
 
     def sum_under_diag(self):
         """A function that calculates the sum of elements below the main diagonal."""
