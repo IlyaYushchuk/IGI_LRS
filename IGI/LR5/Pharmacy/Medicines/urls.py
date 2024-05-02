@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from Medicines import views
 
 app_name = 'medicines'
@@ -7,7 +7,7 @@ urlpatterns = [
     path('search/', views.departments, name='search'),
     path('sales/', views.sales, name='sales'),
     path('', views.departments, name='deps'),
-    path('<int:dep_id>/', views.department, name='dep'),
-    path('<int:dep_id>/<int:cat_id>/', views.medicines, name='meds'),
-    path('<int:dep_id>/<int:cat_id>/<int:med_id>/', views.medicine, name='med'),
+    re_path(r'(?P<dep_id>\d+)/(?P<cat_id>\d+)/(?P<med_id>\d+)/', views.medicine, name='med'),
+    re_path(r'(?P<dep_id>\d+)/(?P<cat_id>\d+)/', views.medicines, name='meds'),
+    re_path(r'(?P<dep_id>\d+)', views.department, name='dep'),
 ]

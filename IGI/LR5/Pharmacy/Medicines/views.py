@@ -5,6 +5,8 @@ from functions.menu import load_medicines
 from .utils import q_search
 
 def medicines(request, dep_id, cat_id):
+    dep_id = int(dep_id)
+    cat_id = int(cat_id)
     discount = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', 'default')
     query = request.GET.get('q', None)
@@ -35,6 +37,7 @@ def medicines(request, dep_id, cat_id):
     return render(request, "Medicines/medicines.html", context)
 
 def department(request, dep_id):
+    dep_id = int(dep_id)
     discount = request.GET.get('on_sale', None)
     order_by = request.GET.get('order_by', 'default')
     query = request.GET.get('q', None)
@@ -99,6 +102,9 @@ def departments(request):
     return render(request, "Medicines/medicines.html", context)
 
 def medicine(request, dep_id, cat_id, med_id):
+    dep_id = int(dep_id)
+    cat_id = int(cat_id)
+    med_id = int(med_id)
     med = Medicines.objects.filter(id=med_id)[0]
 
     context = {

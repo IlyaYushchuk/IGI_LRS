@@ -2,11 +2,12 @@ import requests
 from django.shortcuts import render
 from .models import New, Vacancy, Promotion
 from users.models import User
-from Medicines.models import Sales
+from Medicines.models import Sales, Medicines
 
 from functions.menu import load_medicines
 from datetime import datetime
-import statistics
+import statistics, matplotlib.pyplot as plt
+import seaborn as sns, pandas as pd
 
 def index(request):
     appid = '53463e2c2ed3172e0488ab9e52e72b44'
@@ -58,6 +59,7 @@ def news(request):
     return render(request, 'main/news.html', context)
 
 def new(request, new_id):
+    new_id = int(new_id)
     new = New.objects.filter(id=new_id)[0]
     context = {
         'departments': load_medicines(),
@@ -102,6 +104,39 @@ def statistic(request):
     popular_med = max([elem for elem in sales], key=lambda elem: elem.quantity).medicine.name
     most_income_med = max([elem for elem in sales], key=lambda elem: elem.medicine.price * elem.quantity).medicine.name
 
+    vals = [elem.quantity for elem in sales]
+    labels = [elem.medicine.name for elem in sales]
+    fig, ax = plt.subplots()
+    ax.pie(vals, labels=labels, autopct='%1.1f%%')
+    ax.axis("equal")
+    fig.tight_layout()
+    plt.savefig('main/static/images/graph.png')
+
+    medicines = Medicines.objects.all()
+    vals = [elem.price for elem in medicines]
+    labels = [elem.name for elem in medicines]
+
+    fig, ax = plt.subplots(figsize=(11,11))
+    plt.barh(labels, vals)
+    ax.spines[['right', 'top']].set_visible(False) 
+    fig.tight_layout()
+    plt.savefig('main/static/images/graph2.png')
+
+
+
+    # x = [i / 100 for i in range(-100, 100, 1)]
+    # math_y = [math.log(1 - elem) for elem in x]
+
+    # fig, ax = plt.subplots()
+    # ax.plot(x, math_y, 'red', linewidth=2, label='Taylor')
+    # ax.legend(loc='lower left')
+    # ax.set_xlabel('Ox')
+    # ax.set_ylabel('Oy')
+    # ax.text(-1.05, -2.3, 'Демонстрация графиков, полученных\nпо Тейлору и с помощью модуля Math')
+    # ax.annotate('Точка, с которой начинается разложение по Тейлору', xy=(0, 0), xytext=(-0.75, 0.75), arrowprops=dict(facecolor='black', shrink=0.01))
+    # plt.savefig('main/static/images/graph.png')
+    #plt.show()
+
     context = {
         'departments': load_medicines(),
         'users_count': users_count,
@@ -112,6 +147,6 @@ def statistic(request):
         'sales_mode': statistics.mode(sales_incomes),
         'sales_median': statistics.median(sales_incomes),
         'sales_variance': statistics.variance(sales_incomes),
-        'sales_stdev': statistics.stdev(sales_incomes)
+        'sales_stdev': statistics.stdev(sales_incomes),
         }
     return render(request, 'main/statistic.html', context)
