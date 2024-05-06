@@ -20,19 +20,25 @@
             {% endif %}
             <div class="info">
                 <p id="name">{{ med.name }}</p>
+                <p id="quantity">В наличии: {{ med.quantity }}</p>
                 {% if med.discount %}
-                    <p id="quantity">В наличии: {{ med.quantity }}</p>
                     <p class="price"><s>{{ med.price }}</s> BYN</p>
                     <p id="discount_price">{{ med.sell_price }} BYN</p>
-                    <button class="buy">
-                        <a class="buy_text" href="">Купить</a>
-                    </button>
+                    {% if user.is_authenticated %}
+                        <button class="buy">
+                            <a class="buy_text" href="">Купить</a>
+                        </button>
+                    {% endif %}
                 {% else %}
                     <p class="price">{{ med.price }} BYN</p>
-                    <button class="buy">
-                        <a class="buy_text" href="">Купить</a>
-                    </button>
+                    {% if user.is_authenticated %}
+                        <button class="buy">
+                            <a class="buy_text" href="">Купить</a>
+                        </button>
+                    {% endif %}
                 {% endif %}
+                <p>Точки самовывоза:</p>
+                <p>{{ med.pick_up_points }}</p>
             </div>
         </div>
         <div class="description_container">

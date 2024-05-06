@@ -18,8 +18,11 @@
             {% else %}
                 <li><a href="{% url "users:profile" %}" class="active">Профиль<span class="fa fa-angle-down"></span></a>
                     <ul class="submenu">
-                        {% if user.is_admin or user.is_staff %}
+                        {% if user.is_superuser %}
                             <li><a href="/admin">Админ</a></li>
+                        {% endif %}
+                        {% if user.is_staff and not user.is_superuser %}
+                            <li><a href="{% url "users:providers" %}">Мои поставщики</a></li>
                         {% endif %}
                         <li><a href="{% url "users:logout" %}">Выйти</a></li>
                     </ul>

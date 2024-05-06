@@ -23,7 +23,7 @@ def index(request):
             'values': [1, 2]
         }
         res.append(temp1)
-    new = New.objects.first()
+    new = New.objects.last()
     print(res)
     context = {
         'departments': load_medicines(),

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Departments, Categories, Medicines, Providers, Sales
+from .models import Departments, Categories, Medicines, Sales, Providers
 
 @admin.register(Departments)
 class DepartmentsAdmin(admin.ModelAdmin):

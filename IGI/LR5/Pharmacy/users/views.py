@@ -5,6 +5,7 @@ from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, ReviewForm
 from users.models import User, Questions, Review
+from Medicines.models import Providers
 from datetime import datetime, timezone
 import pytz, calendar
 
@@ -110,3 +111,13 @@ def reviews(request):
         'reviews': reviews[::-1]
     }
     return render(request, 'users/review.html', context)
+
+def providers(request):
+    curr_user = request.user
+    providers = Providers.objects.filter(user = curr_user)
+
+    context = {
+        'departments': load_medicines(),
+        'providers': providers
+    }
+    return render(request, 'users/providers.html', context)

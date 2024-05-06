@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static "css/menu.css" %}">
+    <link rel="stylesheet" href="{% static "css/vacancy.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <div id='h1_button'>
+        <h1>Мои поставщики</h1>
+    </div>
+    {% for provider in providers %}
+        <div class="vacancy">
+            <p>{{ provider.name }}</p>
+            <p>{{ provider.medicine.name }}</p>
+            <p>{{ provider.price }} BYN за 1 шт./уп.</p>
+        </div>
+    {% endfor %}
+{% endblock  %}

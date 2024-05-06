@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 class Departments(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Название')
@@ -29,6 +30,7 @@ class Medicines(models.Model):
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     description = models.TextField(verbose_name='Описание')
     instruction = models.TextField(verbose_name='Инструкция')
+    pick_up_points = models.TextField(verbose_name='Точки самовывоза', null=True, blank=True)
     image = models.ImageField(blank=True, null=True, verbose_name='Изображение', upload_to='medicines_images/')
 
     class Meta:
@@ -44,6 +46,7 @@ class Medicines(models.Model):
 class Providers(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Компания-поставщик')
     medicine = models.ForeignKey(to=Medicines, on_delete=models.CASCADE, verbose_name='Товар')
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Персонал')
     price = models.PositiveIntegerField(default=0, verbose_name='Закупочная цена')
 
     class Meta:
