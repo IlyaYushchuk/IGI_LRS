@@ -1,11 +1,11 @@
 from django.contrib import auth
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse
 
 from users.forms import UserLoginForm, UserRegistrationForm, ReviewForm
 from users.models import User, Questions, Review
-from Medicines.models import Providers
+from Medicines.models import Providers, Medicines
 from datetime import datetime, timezone
 import pytz, calendar
 
@@ -115,9 +115,43 @@ def reviews(request):
 def providers(request):
     curr_user = request.user
     providers = Providers.objects.filter(user = curr_user)
-
+    meds = Medicines.objects.all()
     context = {
         'departments': load_medicines(),
-        'providers': providers
+        'providers': providers,
+        'meds': meds
     }
     return render(request, 'users/providers.html', context)
+
+def create(request):
+    if request.method == "POST":
+        prov = Providers()
+        prov.name = request.POST.get("name")
+        prov.price = request.POST.get("price")
+        prov.medicine = Medicines.objects.get(id=request.POST.get("medicine"))
+        prov.user = request.user
+        prov.save()
+    return HttpResponseRedirect("/users/providers/")
+
+def edit(request, provider_id):
+    try:
+        prov = Providers.objects.get(id=provider_id)
+ 
+        if request.method == "POST":
+            prov.name = request.POST.get("name")
+            prov.medicine = Medicines.objects.get(id=request.POST.get("medicine"))
+            prov.price = request.POST.get("price")
+            prov.save()
+            return HttpResponseRedirect("/users/providers/")
+        else:
+            return render(request, "users/edit.html", {"provider": prov, 'meds': Medicines.objects.all()})
+    except Providers.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
+
+def delete(request, provider_id):
+    try:
+        prov = Providers.objects.get(id=provider_id)
+        prov.delete()
+        return HttpResponseRedirect("/users/providers/")
+    except Providers.DoesNotExist:
+        return HttpResponseNotFound("<h2>Person not found</h2>")
