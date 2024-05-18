@@ -3,10 +3,15 @@ from django.shortcuts import render
 
 # Create your views here.
 
+from goods.models import Categories
+
 def index(request):
+
+  
+
     context = {
         'title':'Main',
-        'content': 'Ремонт одежды и обуви StitchWiz'
+        'content': 'Ремонт одежды и обуви StitchWiz',
     }
     return render(request, 'index.html',context)
 
