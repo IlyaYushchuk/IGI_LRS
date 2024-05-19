@@ -8,7 +8,7 @@ register = template.Library()
 
 @register.simple_tag()
 def tag_categories():
-    return Categories.objects.all()
+    return Categories.objects.order_by('id')
 
 @register.simple_tag(takes_context = True)
 def  change_params(context, **kwargs):
