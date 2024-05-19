@@ -95,7 +95,7 @@
                         {% endfor %}
                     </ul>
                 </div>
-                {% comment %} <!-- Значек корзины, вызывает модальное окно -->
+                <!-- Значек корзины, вызывает модальное окно -->
                 <div>
                     <button type="button" class="btn btn-dark btn-secondary d-flex" id="modalButton"
                         aria-expanded="false">
@@ -103,8 +103,8 @@
                             height="24">
                         <span id="goods-in-cart-count">0</span>
                     </button>
-                </div> {% endcomment %}
-                {% comment %} <!-- Разметка модального окна корзины -->
+                </div> 
+                <!-- Разметка модального окна корзины -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                     </div>
-                </div> {% endcomment %}
+                </div>
                 <!-- Закончилась разметка модального окна -->
             </div>
         </div>
@@ -178,8 +178,9 @@
                 </div>
                 <div class="col-lg-10">
                     <!-- Контент на странице -->
-                 {% block content %}
-                 {% endblock%}
+                {% include "includes/notifications.html" %} 
+                {% block content %}
+                {% endblock%}
                </div>
             </div>
         </div>
