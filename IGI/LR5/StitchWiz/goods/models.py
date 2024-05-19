@@ -36,6 +36,7 @@ class Products(models.Model):
         return self.price 
 
     class Meta:
+        ordering = ('id',)
         db_table = 'product'
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
