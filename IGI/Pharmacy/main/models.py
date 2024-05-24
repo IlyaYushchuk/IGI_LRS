@@ -29,9 +29,10 @@ class Vacancy(models.Model):
     
 class Promotion(models.Model):
     title = models.CharField(max_length=200, verbose_name = 'Название')
+    code = models.CharField(max_length=50, unique=True)
     date = models.DateField(default=timezone.now(), verbose_name='Дата окончания', auto_now=False, auto_now_add=False)
     some_info = models.TextField(max_length=1000, verbose_name = 'Описание акции')
-    discount = models.PositiveIntegerField(default=0, verbose_name = 'Скидка')
+    discount = models.PositiveIntegerField(default=0, verbose_name = 'Скидка в %')
 
     class Meta:
         verbose_name = 'Акция'

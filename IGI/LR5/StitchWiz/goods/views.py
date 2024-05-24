@@ -1,8 +1,12 @@
-from django.shortcuts import get_list_or_404, render
+import logging
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_list_or_404, redirect, render
 from django.core.paginator import Paginator
 # Create your views here.
 from goods.models import Products
 from goods.utils import q_search
+from goods.forms import OrderForm
+from goods.models import Order
 
 def catalog(request, category_slug=None):
 
@@ -40,7 +44,26 @@ def catalog(request, category_slug=None):
 
 def product(request, product_slug):
     product = Products.objects.get(slug = product_slug)
+ 
+    logger=logging.getLogger('django')
+    logger.info('\n\n\n\n',request,'\n\n\n\n')
+    if request.method == 'POST':
+        form = OrderForm(request.POST, masters=product.masters)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.product = product
+            order.user = request.user
+            order.save()
+            return redirect('main_page:index')
+    else:
+        form = OrderForm(masters=product.masters)
+
+
+    
     context={
+        'title':product.name,
         'product':product,
+        'form': form,
     }
     return render(request, 'goods/product.html', context)
+

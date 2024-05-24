@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/new.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <h1>{{ new.title }}</h1>
+    <div class="new">
+        {% if new.image %}
+            <div id="img">
+                <img src="{{ new.image.url }}" alt="photo_error">
+            </div>
+        {% endif %}
+        <div class="info">
+            <p>{{ new.text }}</p>
+        </div>
+    </div>
+{% endblock  %}

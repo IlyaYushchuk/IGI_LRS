@@ -1,0 +1,56 @@
+h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 40px;
+    text-align: center;
+}
+
+
+a:hover {
+    color: rgb(194, 190, 190);
+}
+
+p {
+    padding-left: 10px;
+    text-align: justify;
+}
+
+img {
+    width: 100px;
+    border-radius: 15px;
+}
+
+.new {
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+.news-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;  /* Это для очистки float */
+}
+.news-item img {
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    float: left;
+    margin-right: 10px;
+}
+.news-item h2 {
+    margin: 0;
+}
+.news-item p {
+    margin: 5px 0;
+}
+.read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}

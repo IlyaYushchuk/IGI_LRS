@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+    }
+    .vacancy-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .vacancy {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 100%;
+        max-width: 400px;
+    }
+    .vacancy h2 {
+        margin-top: 0;
+        color: #333;
+    }
+    .vacancy p {
+        margin: 5px 0;
+        color: #555;
+    }
+</style>
+
+{% block content %}
+    
+<h1>Вакансии</h1>
+<div class="vacancy-container">
+{% for vacancy in vacancies %}
+    <div class="vacancy">
+        <h2>Должность: {{ vacancy.position }}</h2>
+        <p>Заработная плата: {{ vacancy.salary }} BYN</p>
+        <p>Город: {{ vacancy.city }}</p>
+        <p>Описание:</p>
+        <p>{{ vacancy.some_info }}</p>
+    </div>
+{% endfor %}    
+</div>
+{% endblock  %}

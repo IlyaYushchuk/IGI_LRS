@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/vacancy.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <h1>Часто задаваемые вопросы</h1>
+    {% for question in questions %}
+        <div class="vacancy">
+            <p>Вопрос: {{ question.question }}</p>
+            <p>Ответ: {{ question.answer }}</p>
+            <p>{{ question.date|date:"d/m/Y" }}</p>
+        </div>
+    {% endfor %}
+{% endblock  %}

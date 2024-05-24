@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">Временная зона: {{local_zone}}</h1> 
+    <h3 class="mt-5">Текущее время: {{date|date:"d.m.Y H:i"}}</h3> 
+    <h3 class="mt-5">Мировое время: {{utc_date|date:"d.m.Y H:i"}}</h3>  
+    <p id="calendar">{{ calendar|safe }}</p>
+    <h1 class="mt-5">Добавить отзыв</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.text.label_tag }}
+            {{ form.text }}
+        </div>
+        <div class="form-group">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock  %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'debug_toolbar',
+    'phonenumber_field',
 
     'goods',
     'users',
@@ -145,3 +146,6 @@ INTERNAL_IPS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL='/user/login/'
+USE_TZ = True
+TIME_ZONE = 'UTC' 

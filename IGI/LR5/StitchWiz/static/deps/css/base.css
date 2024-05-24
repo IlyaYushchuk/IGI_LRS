@@ -1,0 +1,9 @@
+.rectangle {
+    border-radius: 20px;
+    border: 2px black solid;
+    padding: 20px;
+    margin: 30px;
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+}
