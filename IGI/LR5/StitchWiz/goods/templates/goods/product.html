@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card mb-4 custom-shadow">
+        <div class="row">
+            <!-- Миниатюры -->
+            <div class="col-md-4">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                        class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imageModal1">
+                {% else %}
+                <img src="{% static "deps/images/Not found image.png" %}"
+                    class="img-thumbnail" data-bs-toggle="modal" data-bs-target="#imageModal1">
+                
+                {% endif %}
+                
+            </div>
+            <div class="col-md-4 ">
+                <p class="product_id mt-3">id: {{product.display_id}}</p>
+                {% comment %} <div class="col-md-12 mb-3">
+                    <label for="id_comment" class="form-label">Комментарий</label>
+                    <input type="text" class="form-control" id="id_comment"
+                        name='comment'
+                        {% if form.comment.value %}
+                        value="{{form.comment.value}}"
+                        {% endif %}
+                        >
+                </div>
+                {% endcomment %}{% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <a href="{% url "cart:add_to_cart" product.id %}">
+                    <img class="mx-1" src="{% static "deps/icons/cart-plus.svg" %}" alt="Catalog Icon"
+                        width="32" height="32"><button type="submit"></button>
+                    </a>
+                   
+                </form>
+                {% else %}
+                    <a href="{% url "users:login" %}"><button type="submit"><img class="mx-1" src="{% static "deps/icons/cart-plus.svg" %}" alt="Catalog Icon"
+                        width="32" height="32"></button></a>
+                {% endif %}
+                
+               
+            </div>
+           
+            <!-- Увеличить изображение в модальном окне -->
+            <div class="modal fade" id="imageModal1" tabindex="-1"
+                aria-labelledby="imageModal1Label" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModal1Label">{{product.name}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Закрыть"></button>
+                        </div>
+                        <div class="modal-body">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}"
+                            class="img-fluid" alt="Изображение 1">
+                        {% else %}
+                        <img src="{% static "deps/images/Not found image.png" %}"
+                        class="img-fluid" alt="Изображение 1">
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Описание товара -->
+        <div class="card-body">
+            <p class="card-text">Цена: <strong>{{product.sell_price}} $</strong></p>
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+        </div>
+       
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block footer %}
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Hratefull_for_gelp Studio 2024</p>
+    </div>
+</footer>
+{% endblock footer %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "deps/css/news.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section>
+    <h1>Новости</h1>
+    {% for new in news %}
+        <article class="new">
+            {% if new.image %}
+                <div>
+                    <img src="{{ new.image.url }}" alt="photo_error">
+                </div>
+            {% endif %}
+            <div class="info">
+                <p>{{new.title}}</p>
+                <form action="/news/{{ new.id }}">
+                    <button type="submit">Читать далее</button>
+                </form>
+                <p>{{ new.some_info }}</p>
+            </div>
+        </article>
+    {% endfor %}
+</section>
+{% endblock  %}

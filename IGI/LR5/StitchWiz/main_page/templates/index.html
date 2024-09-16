@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block  css%}
+{% comment %} <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}"> {% endcomment %}
+{% endblock %}
+
+
+{% block content %}
+    <section>   
+    <h1 class="mt-5 pt-5"><strong>{{ content }}</strong></h1>
+    <article>
+        <div id="img">
+            <img src="{% static 'deps/images/logo.jfif' %}" alt="photo_error">
+        </div>
+
+        <figure id="img">
+            <img src="{% static 'deps/images/banner1.jfif' %}" alt="photo_error">
+        </figure>
+
+    </article>  
+    <article>
+        <h1>Последняя опубликованная новость</h1>
+        <h1>{{ new.title }}</h1>
+        <div class="new">
+            {% if new.image %}
+                <figure id="img">
+                    <img src="{{ new.image.url }}" alt="photo_error">
+                </figure>
+            {% endif %}
+            <div class="info">
+                <p>{{ new.text }}</p>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h1>Наши партнеры</h1>
+        {% for partner in partners%}
+            <figure id="img">
+                <img src="{{ partner.image.url }}" alt="photo_error">
+            </figure>
+            <a href="{{ partner.ref }}">{{ partner.name }}</a>
+        {% endfor %}
+    </article>  
+    </section>
+{% endblock %}
+
+
+
+{% block footer %}
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Hratefull_for_gelp Studio 2024</p>
+    </div>
+</footer>
+{% endblock %}
+

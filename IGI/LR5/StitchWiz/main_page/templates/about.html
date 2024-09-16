@@ -1,0 +1,342 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block  css%}
+{% endblock %}
+
+
+{% block content %}
+{% comment %} <div class = "mt-5 pt-5">
+<h3 class = "m-2" class="mt-5 pt-5"><strong>{{ content }}</strong></h3>
+<p class = "m-2">{{ text_on_page }}</p></div>
+<h7>Факт о котах: {{cat_fact}}</h7>
+ <h6></h6>
+<h7>{{setup}} {{punchline}}</h7>
+<h7>Количество пользователей {{users_count}}</h7><h6></h6>
+<h7>Общий доход {{general_income}}</h7><h6></h6>
+<h7>Самая популярная услуга {{most_popular_product}}</h7><h6></h6>
+<img src="{% static "images/graph.png" %}" alt="Error"> {% endcomment %}
+<article>
+    <p>Пример таблицы</p>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="40" >Заголовок 1</th>
+                <th  colspan="4" >Заголовок 2</th>
+                <th>Заголовок 3</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>a</td>
+            <td>1</td>
+            <td>b</td>
+            <td>2</td>
+            <td>c</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>d</td>
+            <td>4</td>
+            <td>e</td>
+            <td>5</td>
+            <td>f</td>
+            <td>6</td>
+        </tr>
+        <tr height="100" bgcolor="blue" bordercolor="red">
+            <td></td>
+            <td></td>
+            <td colspan="2" rowspan="1" align="center">Объединенная ячейка</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+    
+</article>
+<article>
+    <p><strong>Примеры: листинга, сокрашения, определения и тд </strong></p>
+    <pre><code id="code example">
+        #include <windows.h>
+            #include <iostream>
+            
+            using namespace std;
+            
+            int main() {
+                for (int j = 0; j < 1000; j++)
+                {
+                    // Переменная для идентификатора потока
+                    HANDLE* hThreads = new HANDLE[Thread_Number];
+            
+                    DWORD* dwThreadIds = new DWORD[Thread_Number];
+            
+                    int* threadParams = new int[Thread_Number];
+            
+            
+                    /*int** arrs = new int* [Thread_Number];
+            
+                    for (int i = 0; i < Thread_Number; i++)
+                    {
+                        arrs[i]*
+                    }*/
+            
+            
+                    for (int i = 0; i < Thread_Number; i++)
+                    {
+                        threadParams[i] = i;
+                        dwThreadIds[i] = i;
+                    }
+            
+                    for (int i = 0; i < Thread_Number; i++)
+                    {
+            
+                        hThreads[i] = CreateThread(
+                            NULL,                   // Атрибуты безопасности (по умолчанию NULL)
+                            0,                      // Размер стека (по умолчанию 0)
+                            ThreadFunction,          // Указатель на функцию, которую выполняет поток
+                            &threadParams[i],            // Параметры для переданной функции (в данном случае указатель на переменную)
+                            CREATE_SUSPENDED,                      // Флаги создания (0 означает немедленный запуск)
+                            &dwThreadIds[i]              // Указатель на идентификатор потока
+                        );
+                    }
+            
+            
+            
+                    /*for (int i = 0; i < Thread_Number/2; i++)
+                    {
+                        if (!SetThreadPriority(hThreads[i], 0)) {
+                            std::cerr << "Failed to set thread priority." << std::endl;
+                            return 1;
+                        }
+                    }*/
+                    for (int i = 0; i < Thread_Number; i++)
+                    {
+                        if (!SetThreadPriority(hThreads[i], 0)) {
+                            std::cerr << "Failed to set thread priority." << std::endl;
+                            return 1;
+                        }
+                    }
+                    /*if (!SetThreadPriority(hThreads[0], -15)) {
+                        std::cerr << "Failed to set thread priority." << std::endl;
+                        return 1;
+                    }*/
+            
+            
+            
+            
+                    for (int i = 0; i < Thread_Number; i++)
+                    {
+                        ResumeThread(hThreads[i]);
+                        Sleep(1);
+                    }
+            
+            
+            
+                    WaitForMultipleObjects(Thread_Number, hThreads, true, INFINITE);
+            
+                    // Закрытие дескриптора потока
+                    CloseHandle(hThreads);
+            
+                    kostil = Thread_Number;
+                    }
+            
+                p* raiting = new p[Thread_Number];
+                for (int i = 0; i < Thread_Number; i++)
+                {
+                    raiting[i].award = awards[i];
+                    raiting[i].id = i;
+                    //cout << i << " " << awards[i] << endl;
+                }
+                bubbleSort(raiting, Thread_Number);
+                for (int i = 0; i < Thread_Number; i++)
+                {
+                    cout <<i<<": "<< raiting[i].id << " " << raiting[i].award << endl;
+                }
+            
+                return 0;
+            }
+    </code></pre>
+    
+    <p>Сайт <abbr title="HyperText Markup Language">HTML</abbr> является основным языком разметки для создания веб-страниц.</p>
+    
+    <p><dfn>Алгоритм</dfn> — это набор инструкций, предназначенных для выполнения задачи или решения проблемы.</p>
+    
+    <blockquote cite="https://dzen.ru/a/ZRFaGN_gKhX6xTWW">
+        «В жизни всегда есть две дороги: одна — первая, а другая — вторая»
+    </blockquote>
+
+    <p>Дата и время публикации: <time datetime="2024-09-11T14:30">11 сентября 2024, 14:30</time></p>
+
+    <pre>
+        Жизнь — это река,
+        Течёт и бежит.
+        Не видно конца
+        В пучине дарит.
+    </pre>
+
+    <p>Это строка с потенциальным переводом строки <wbr> в середине. И это было самое сложное задание в этой лабе.</p>
+</article>
+
+<article>
+    <p>Все виды ссылок</p> 
+    <a href="https://pravo.by/" target="_blank">Отдельная вкладка</a>
+    <a href={% static "politika-konfidenczialnosti.pdf" %} download>Скачивание</a>
+    <a href="https://dzen.ru/a/ZRFaGN_gKhX6xTWW">Просто переход</a>
+    <a href="mailto:3952081@gmail.com">Написать на e-mail</a>
+    <a href="tel:+375339935255">Позвонить на +375339935255</a>
+    <a href="#code example">Перейти к версике кода</a>
+    <a href="../static/politika-konfidenczialnosti.pdf#page=5">Перейти к 5 странице в PDF</a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ#t=2m30s">Начать видео с 2:30</a>
+    <ul>
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ul>
+    <ol type="A">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="a">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="1">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="i">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="I">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <dl>
+        <dt>HTML</dt>
+        <dd>Язык разметки гипертекста, используемый для создания веб-страниц.</dd>
+
+        <dt>CSS</dt>
+        <dd>Язык стилей, используемый для описания внешнего вида веб-страниц, написанных на HTML.</dd>
+
+        <dt>JavaScript</dt>
+        <dd>Язык программирования, используемый для создания динамических и интерактивных элементов на веб-страницах.</dd>
+    </dl>
+    <figure>
+        <img src={% static "deps/images/baseavatar.jpg" %} alt="Пример изображения" width="300" height="200">
+        <figcaption>Подпись к изображению: Пример изображения</figcaption>
+    </figure>
+    <nav>
+        <ul>
+            <li><a href="#home">1</a></li>
+            <li><a href="#about">2</a></li>
+            <li><a href="#services">3</a></li>
+            <li><a href="#contact">4</a></li>
+        </ul>
+    </nav>
+    <nav>
+        <a href="#home">1</a>
+        <a href="#home">2</a>
+        <a href="#home">3</a>
+        <a href="#home">4</a>
+    </nav>
+    <form>
+        <label for="options">Выберите опцию:</label>
+        <select id="options" name="options" required >
+            <option value="option1">Опция 1</option>
+            <option value="option2">Опция 2</option>
+            <option value="option3">Опция 3</option>
+            <option value="option4">Опция 4</option>
+        </select>
+    </form>
+    <p>Адаптивное изображение</p>
+
+      
+        <img src="{%static "deps/images/html-mascout-min.png"%}" 
+            alt="Пример изображения" 
+            width="50%" 
+            height="auto">
+
+</article>
+
+<article>
+    <strong style="color: red; font-size: 18px;">Информация о нашей компании: {{ info.info }}</strong><br>
+    <em>Реквизиты: {{ info.props }}</em><br>
+    <p>История по годам: <mark>{{ info.history }}</mark></p><br>
+    <div>
+        <img src="{{ info.logo.url }}" alt="photo_error">
+    </div>
+    
+    <video width="320" height="240" controls itemscope itemtype="https://schema.org/VideoObject" itemprop="video">
+        <source src="{{ info.video.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <audio itemscope itemtype="https://schema.org/AudioObject" itemprop="audio" controls src="/media/main_audios/audio.mp3"></audio>
+</article>
+<article>
+<div>
+    <h1>СЕРТИФИКАТ О ПРОВЕРКЕ</h1>
+    <h2>РОСКОМНАДЗОР</h2>
+
+    <p>Настоящим удостоверяется, что сайт <strong>StitchWiz</strong>, расположенный по адресу <strong>http://127.0.0.1:8000/</strong>, прошел проверку на соответствие требованиям законодательства Российской Федерации о защите персональных данных и информационной безопасности.</p>
+
+    <p><strong>Дата проверки</strong>: <time datetime="1984-12-7">10.09.2024</time></p>
+    <p><strong>Номер проверки</strong>: 1666</p>
+    <p><strong>Результаты проверки</strong>: Соответствует требованиям законодательства РФ.</p>
+
+    <h3>Проверенные аспекты:</h3>
+    <ul>
+        <li>Соответствие <a href="https://pravo.by/" target="_blank">Федеральному закону №152-ФЗ «О персональных данных»</a>;</li>
+        <li>Соблюдение требований к хранению и обработке персональных данных;</li>
+        <li>Защита информации от несанкционированного доступа;</li>
+        <li>Выполнение технических и организационных мер по защите данных.</li>
+    </ul>
+
+    <h3>Заключение:</h3>
+    <p>По итогам проверки, сайт <strong>StitchWiz</strong> соответствует установленным требованиям Роскомнадзора и может продолжать свою деятельность в рамках правового поля Российской Федерации.</p>
+
+    <p><strong>Подпись проверяющего лица</strong>:</p>
+    <p>Липов Адрей Юрьевич</p>
+    <p>Должность: глава отделки проверки и соответсвия Роскомнадзора</p>
+    <p>Дата: <time datetime="1984-12-7">10.09.2024</time></p>
+</div>
+</article>
+{% endblock %}
+
+
+{% block footer %}
+<footer class="py-4 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Hratefull_for_gelp Studio 2024</p>
+    </div>
+</footer>
+{% endblock %}
+
