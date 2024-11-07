@@ -1,0 +1,75 @@
+.product-card {
+    display: flex; /* Используем flexbox для расположения содержимого */
+    border: 1px solid #ddd; /* Рамка для карточки товара */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 15px; /* Внутренние отступы */
+    margin-bottom: 20px; /* Отступ между карточками */
+    background-color: #fff; /* Цвет фона карточки */
+}
+
+.product-image-container {
+    flex: 1; /* Позволяет контейнеру изображения занимать одну часть */
+    margin-right: 15px; /* Отступ справа для расстояния от информации о товаре */
+}
+
+.product-img {
+    max-width: 100%; /* Ограничение ширины изображения */
+    height: auto; /* Автоматическая высота */
+    border-radius: 8px; /* Скругленные углы для изображения */
+}
+
+.product-info {
+    flex: 2; /* Позволяет информации о товаре занимать две части */
+}
+
+.product-id, .product-text, .product-title {
+    margin: 5px 0; /* Отступы между текстами */
+}
+
+.buy-product-form {
+    margin-top: 10px; /* Отступ сверху для формы */
+}
+
+.input-field {
+    width: 100%; /* Ширина поля ввода */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 5px; /* Скругленные углы */
+    margin-bottom: 10px; /* Отступ между полями ввода */
+    font-size: 14px; /* Размер шрифта */
+    transition: border 0.3s; /* Плавный переход при наведении */
+}
+
+.input-field:focus {
+    border-color: #007bff; /* Цвет рамки при фокусе */
+    outline: none; /* Убираем обводку */
+}
+
+.add-to-cart {
+    display: flex; /* Выстраиваем кнопку и изображение в строку */
+    align-items: center; /* Выравниваем элементы по центру по вертикали */
+}
+
+.add-to-cart-button {
+  
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем рамку кнопки */
+    border-radius: 5px; /* Скругленные углы */
+    padding: 10px 15px; /* Внутренние отступы */
+    cursor: pointer; /* Изменение курсора на указатель */
+    transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.add-to-cart-button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+
+.cart-img {
+    width: 24px; /* Фиксированная ширина иконки корзины */
+    height: 24px; /* Фиксированная высота иконки корзины */
+}
+
+
+textarea{
+    resize: none;
+}

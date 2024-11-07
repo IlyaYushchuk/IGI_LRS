@@ -1,0 +1,77 @@
+/* Стиль для контейнера с заголовком и кнопкой */
+#h1_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 20;
+    color: #2c3e50;
+    margin: 0;}
+
+
+.add_review {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Стили для кнопки при наведении */
+.add_review:hover {
+    background-color: #2980b9;
+}
+
+/* Общий контейнер отзывов */
+.list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Контейнер для каждого отзыва */
+.review-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+/* Эффект при наведении на отзыв */
+.review-container:hover {
+    background-color: #ecf0f1;
+}
+
+/* Стили для имени пользователя */
+.review-user {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+}
+
+/* Стили для рейтинга */
+.review-rating {
+    font-size: 1.1rem;
+    color: #f39c12;
+    margin: 0 0 10px 0;
+}
+
+/* Стили для текста отзыва */
+.review-text {
+    font-size: 1rem;
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Стили для даты создания */
+.review-created-at {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    text-align: right;
+}

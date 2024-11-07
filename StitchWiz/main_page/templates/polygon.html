@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block  css%}
+<link rel="stylesheet" href="{% static "css/polygon2.css" %}"></link>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+{% endblock %}
+
+
+{% block content %}
+   <section>
+
+    <div class='age-check'>
+        <h1>Рубрика очумелые ручки</h1>
+        <button id="a1">Click me!</button>
+    </div>
+
+    <div class="machines-container">
+        <div class="sewing-machine"> 
+            <img src="{% static "/deps/images/sewingMachine.png" %}" alt="Image 1"id="Image1">
+            <img src="{% static "/deps/images/sewingMachine1.png" %}" style="display: none" alt="Image 1"id="Image2">
+            
+        </div>
+        <div class="sewing-machine1">
+            <img src="{% static "/deps/images/sewingMachine.png" %}" alt="Image 1"id="Image3">
+            <img src="{% static "/deps/images/sewingMachine1.png" %}" style="display: none" alt="Image 1"id="Image4">
+            
+        </div>
+          
+    </div>
+
+    <div class='age-check'>
+        <input type="date" id="birth-date"/>
+        <button id="age-btn">Проверить возраст</button>
+
+        <p id="message"></p>
+        
+        <label>
+            <input type="checkbox" id="toggleStyleOptions"> Настроить стиль
+        </label>
+
+        <div id="styleOptionsContainer"></div>
+    </div>
+
+   <div class='class-task'>
+        <h1>Получите случайную шутку!</h1>
+        <label id="jokeLabel"></label>
+        <button id="jokeButton">Получить шутку</button>
+    </div>
+
+    <div class='class-task'>
+        <h1>Генерация речи из текста</h1>
+        <input type="text" id="textInput" placeholder="Введите текст" required>
+        <button id="speakButton">Произнести</button>
+    </div>
+
+
+    <div class='class-task'>
+        <div class="controls">
+            <button id="start-stopButton">Остановить</button>
+            <button id="toggleColorButton">Отключить изменение цвета</button>
+            <button id="speedUpButton">Ускорить</button>
+            <button id="slowDownButton">Замедлить</button>
+        </div>
+        <canvas id="canva-1" width="400" height="200"></canvas>
+    </div>
+
+
+    <div class='class-task'>
+        <canvas id="graphic" width="auto" height="400"></canvas>
+        <button id='saveBtn'>Скачать график</button>
+    </div>
+
+
+
+        <div class='class-task'>
+            <form id="scriptForm">
+                <label>
+                    <input type="radio" name="scriptOption" value="{% static 'js/classTask.js' %}" onchange="loadScriptAndReload()"> Скрипт ClassTask
+                </label>
+                <label>
+                    <input type="radio" name="scriptOption" value="{% static 'js/prototypeTask.js' %}" onchange="loadScriptAndReload()"> Скрипт PrototypeTask
+                </label>
+            </form>
+
+            <h1>Проверка заказа комплектующих</h1>
+                <form id="partForm">
+                    <input type="text" id="partName" placeholder="Название детали" required>
+                    <input type="number" id="partCost" placeholder="Стоимость (руб.)" required>
+                    <input type="number" id="partQuantity" placeholder="Количество" required>
+                    <button type="button" onclick="addPart()">Добавить деталь</button>
+                </form>
+
+                <div id="partsList"></div>
+                <button type="button" onclick="clearParts()">Очистить склад</button>
+
+                <h2>Выполнить заказ</h2>
+                <form id="orderForm">
+                    <input type="text" id="orderName" placeholder="Название детали" required>
+                    <input type="number" id="orderQuantity" placeholder="Количество" required>
+                    <button type="button" onclick="addToOrder()">Добавить в заказ</button>
+                    <button type="button" onclick="processOrder()">Проверить заказ</button>
+                </form>
+
+                <div id="orderList"></div>
+                <button type="button" onclick="clearOrder()">Очистить заказ</button>
+
+                <div id="orderResult"></div>
+        </div>
+</section>
+    
+<script src="{% static "js/polygon.js" %}"></script> 
+    <script src="{% static "js/graphic.js" %}"></script> 
+    <script src="{% static "js/scrollAnimation.js" %}"></script>
+    <script src="{% static "js/API.js" %}"></script>
+    <script src="{% static "js/canva-1.js" %}"></script>
+    <script src="{% static "js/scriptLoader.js" %}"></script>
+    <script src="{% static "js/pageChanger.js" %}"></script>
+    <script src="{% static "js/ageCheck.js" %}"></script>
+{% endblock %}

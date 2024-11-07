@@ -1,0 +1,162 @@
+{% load static %}
+{% load goods_tags %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Лабораторная работа 1">
+    <meta name="author" content="Yushchuk Ilya">
+    <meta name="keywords" content="meta, html_lab">
+    <link rel="icon" href="{% static 'deps/favicon/favicon-32x32.png' %}" />
+    
+    <link rel="stylesheet" href="{% static "css/base.css" %}"></link>
+    {% block css %}
+    {% endblock%}
+    
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="topmenu">
+                    <a class="nav-item" href="{% url "main_page:index" %}">
+                        <img src="{%static "deps/images/th.jfif"%}" width="80" height="80" >
+                    </a>
+                    <li class="nav-item" >
+                        <a href="#" role="button">
+                            Информация
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:staff" %}">Сотрудники</a></li>
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:vacancies" %}">Открытые вакансии</a></li>
+                            <li><a class="dropdown-item text-white" accesskey="o" href="{% url "main_page:about" %}">Про нас</a></li>
+                            <li><a class="dropdown-item text-white" accesskey="p" href="{% url "main_page:confidentiality" %}">Политика конфиденциальности</a></li>
+                        </ul>
+                    </li>  
+                    <li class="nav-item" >
+                        {% if request.user.is_authenticated %}
+                        <a href="#" role="button">
+                            Заказы
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:processing_orders" %}">Действующие заказы</a></li>
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:canceled_orders" %}">Отмененные заказы</a></li>
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:released_orders" %}">Выполненные заказы</a></li>
+                        </ul>
+                        {% endif %}
+                    </li>  
+                    <li class="nav-item" >
+                        <a href="#" role="button">
+                            Новости
+                        </a>
+                        <ul class="submenu">
+                            <li><a class="dropdown-item  text-white" href="{% url "main_page:news" %}">Новости</a></li>
+                            <li><a class="dropdown-item  text-white"  href="{% url "main_page:questions" %}">Вопросы</a></li>
+                            <li><a class="dropdown-item  text-white"  href="{% url "main_page:reviews" %}">Отзывы</a></li>
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_staff %}
+                                <li><a class="dropdown-item  text-white"  href="{% url "main_page:coupons" %}">Промокоды</a></li>
+                                {% endif %}
+                            {% endif %}
+                        
+                        </ul>
+                    </li> 
+                    
+                        <li class="nav-item" >
+                            {% if not user.is_authenticated %}
+                                <a  href="{% url "users:login" %}">Войти</a>
+                            {% else %}  
+                            
+                                    <a role="button">
+                                        Мой профиль
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a class="dropdown-item  text-white" href="{% url "users:profile" %}">Личный кабинет</a>
+                                        </li>
+                                        {% if user.is_superuser%}  
+                                            <li><a class="dropdown-item  text-white" href="{% url "admin:index" %}">Админ панель</a></li>
+                                        {% endif %}       
+                                        <li><a class="dropdown-item  text-white" href="{% url "users:logout" %}">Выйти</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %} 
+                        </li>
+                        <li class="nav-item" >
+                            <a href="#" role="button">
+                                Каталог
+                            </a>
+                            <ul class="submenu">
+                                {% tag_categories as categories %}
+                                {% for category in categories %}
+                                    <li><a class="dropdown-item  text-white" href="{% url "catalog:index" category.slug %}">{{category.name}}</a></li> 
+                                    
+                                {% endfor %}
+
+                            
+                            </ul>
+                        </li> 
+                        <li class="nav-item" >
+                            <a href="{% url "cart:cart" %}">
+                         <img id="cart-img"src="{% static "deps/icons/basket2-fill.svg" %}" alt="Catalog Icon">
+                             </a>
+                            
+                         </li> <li class="nav-item" >
+                            <a href="{% url "main_page:polygon"%}" class="dropdown-item  text-white" id="timer">Таймер</a>
+                         </li> 
+
+                         
+                        <div class="search-panel">
+                      <form class="search-panel" role="search" action = "{% url "catalog:search" %}" method = "get" >
+                        <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                        <button class="search-btn" type="submit">Поиск</button>
+                    </form>
+                    </ul>
+                    
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        {% comment %} <div class="container3">
+            <div class="catalog-and-cart">    
+                <div class="catelog-div">
+                    <button class="catalog-button" type="button">
+                        Каталог
+                    </button>
+                    <ul class="catalog-list">
+                        {% tag_categories as categories %}
+                        {% for category in categories %}
+                            <li><a class="category" href="{% url "catalog:index" category.slug %}">{{category.name}}</a></li>     
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="cart-button">
+                    <button type="button" class="cart-button" >
+                        <a href="{% url "cart:cart" %}">
+                        <img src="{% static "deps/icons/basket2-fill.svg" %}" alt="Catalog Icon" width="24"
+                            height="24">
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <div class="container">
+                    <!-- Контент на странице -->
+                {% include "includes/notifications.html" %} 
+                {% block content %}
+                {% endblock%} 
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2024 Hratefull_for_gelp. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+
+<script src="{% static "js/timer.js" %}"></script>
+</html>

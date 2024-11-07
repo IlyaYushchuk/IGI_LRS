@@ -1,0 +1,144 @@
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+  
+.slide {
+    min-width: 100%;
+    transition: 0.5s;
+    display: flex;
+}
+
+.slide a {
+    display: flex;
+    position: relative;
+}
+
+.slide img {
+    border-radius: 10%;
+    width: 100%;
+    top: 50%;
+    display: block;
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.image-text {
+    position: absolute;
+    display: block;
+    left: 0;
+    right: 0;
+    text-align: center;
+    bottom: 40px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+}
+
+.counter {
+    position: absolute;
+    left: 40px;
+    text-align: center;
+    top: 40px;
+    color: black;
+    font-size: 25px;
+}
+
+.pag {
+    text-align: center;
+}
+
+.pag div {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.pag div:not(.active-dot) {
+    background-color: gray;
+}
+
+.active-dot {
+    background-color: rgb(190, 190, 190);
+}
+
+/*Настройки-------------------------*/
+#sliderSettingsForm {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  #sliderSettingsForm h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+  }
+  
+  #sliderSettingsForm label {
+    display: block;
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  #sliderSettingsForm input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  #sliderSettingsForm input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #applySettings {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #applySettings:hover {
+    background-color: #0056b3;
+  }

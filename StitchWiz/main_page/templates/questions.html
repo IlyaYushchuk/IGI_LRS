@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/questions.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section>
+    <h1>Часто задаваемые вопросы</h1>
+    {% for question in questions %}
+    <details class="question-item">
+        <summary class="question">{{ question.question }}</summary>
+        <p class="date">Добавлено: {{ question.date|date:"d.m.Y" }}</p>
+        <p class="answer">{{ question.answer }}</p>
+    </details>
+    {% endfor %}
+    </section>
+{% endblock  %}

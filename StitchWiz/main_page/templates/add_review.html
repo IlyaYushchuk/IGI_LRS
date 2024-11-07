@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/add_review.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section class="add-review-section">
+    <h1 class="add-review">Добавить отзыв</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.text.label_tag }}
+            {{ form.text }}
+        </div>
+        <div class="form-group">
+            {{ form.rating.label_tag }}
+            {{ form.rating }}
+        </div>
+        <button class="send-review-btn" type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+</section>
+{% endblock  %}

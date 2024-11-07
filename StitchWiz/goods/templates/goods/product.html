@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/product.css" %}">
+{% endblock  %}
+
+{% block content %}
+<div class="product-card">
+    <div class="product-image-container">
+        {% if product.image %}
+            <img class="product-img" src="{{ product.image.url }}">
+        {% else %}
+            <img class="product-img" src="{% static "deps/images/Not found image.png" %}">
+        {% endif %}
+    </div>
+    
+    <div class="product-info">
+        <p class="product-id">id: {{product.display_id}}</p>
+        <p class="product-text">Цена: <strong>{{product.sell_price}} $</strong></p>
+        <p class="product-title">{{product.name}}</p>
+        <p class="product-text">{{product.description}}</p>
+        
+        {% if user.is_authenticated %}
+        <form class="buy-product-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="add-to-cart">
+                <button type="submit" class="add-to-cart-button">
+                    <img class="cart-img" src="{% static "deps/icons/cart-plus.svg" %}" alt="Добавить в корзину">
+                </button>
+            </div>
+        </form>
+        {% else %}
+            <a href="{% url "users:login" %}">
+                <img class="cart-img" src="{% static "deps/icons/cart-plus.svg" %}" alt="Catalog Icon">
+            </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}

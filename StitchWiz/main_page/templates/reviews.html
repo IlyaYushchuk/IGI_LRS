@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "css/reviews.css" %}">
+{% endblock  %}
+
+
+{% block content %}
+<section>
+<div id='h1_button'>
+    <h1>Отзывы</h1>
+    {% if user.is_authenticated %}
+        <a href="{% url "main_page:add_review" %}"><button class="add_review">Добавить отзыв</button></a>
+    {% else %}
+        <a href="{% url "users:login" %}"><button class="add_review">Добавить отзыв</button></a>
+    {% endif %}
+</div>
+<div >
+    <div class="list-group">
+        {% for review in reviews %}
+            <div class="review-container">
+                <h5 class="review-user">{{ review.user.username }}</h5>
+                <p class="review-rating"> {{ review.rating }} звезды</p>
+                <p class="review-text">{{ review.text }}</p>
+                <p class="review-created-at">{{ review.created_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock  %}

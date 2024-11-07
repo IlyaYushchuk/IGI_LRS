@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/news.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section>
+    <h1 class="news">Новости</h1>
+    {% for new in news %}
+        <article class="new">
+            {% if new.image %}
+                <div>
+                    <img class="new-image" src="{{ new.image.url }}" alt="photo_error">
+                </div>
+            {% endif %}
+            <div class="info">
+                <p class="new-title">{{new.title}}</p>
+                <p class="new-info">{{ new.text }}</p>
+                <form action="/news/{{ new.id }}">
+                    <button class="read-more-btn" type="submit">Читать далее</button>
+                </form>
+                
+            </div>
+        </article>
+    {% endfor %}
+</section>
+{% endblock  %}

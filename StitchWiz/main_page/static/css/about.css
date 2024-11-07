@@ -1,0 +1,255 @@
+#sertificate {
+    border: 30px solid transparent;
+    border-image: -webkit-image-set(url(/media/border.png)) 28 round;
+    width: 1000px;
+    margin: 50px; 
+} 
+#sertificate > div div:first-child{
+    z-index: 10;
+    margin:0;
+    background: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.573), rgba(136, 136, 136, 0.514), rgba(245, 239, 133, 0.541), rgba(220, 78, 78, 0.459));
+}
+
+.z1{
+    width: 200px;
+    height: 200px;
+    position:relative; /* Чтобы z-index работал */
+    background-color: red;
+    z-index: -1; /* Низкий z-index */
+    top: 380px;
+    left: 650px;
+}
+.z2{
+    width: 200px;
+    height: 200px;
+    position: relative; /* Чтобы z-index работал */
+    background-color: blue;
+    z-index: -2; /* Более высокий z-index */
+    top: 80px; /* Перекрытие с .box1 */
+    left: 680px;
+}
+#sertificate li {
+    color: rgb(26, 113, 212);
+}
+#sertificate a {
+    text-decoration: none;
+    color: red;
+}
+#sertificatea:visited {
+    color: orange;
+}
+#sertificate > div {
+    z-index: -3;
+    background-image: url(/media/main_images/fon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+
+#sertificate p:first-child {
+    color: rgb(26, 113, 212);
+    font-weight: 900;
+    text-align: center;
+}
+
+#sertificate p:nth-child(2) {
+    color: rgb(167, 10, 230);
+    font-weight: 900;
+    text-align: center;
+    padding: 30px;
+    font-size: 80px;
+}
+
+#sertificate p:nth-child(3) {
+    color: rgb(73, 28, 238);
+    font-weight: 900;
+    text-align: center;
+    font-size: 30px;
+}
+
+#sertificate p:nth-child(4) {
+    color: rgb(178, 28, 238);
+    font-weight: 900;
+    text-align: center;
+    font-size: 30px;
+}
+
+#sertificate p:nth-child(5) {
+    color: rgb(58, 45, 240);
+    font-weight: 900;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 20px;
+}
+
+#sertificate p:nth-child(6) {
+    color: rgb(58, 45, 240);
+    font-weight: 900;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+#sertificate p:nth-child(7) {
+    color: rgb(178, 28, 238);
+    font-weight: 900;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+#sertificate p:nth-child(8), #sertificate p:nth-child(9), #sertificate p:nth-child(10) {
+    color: rgb(34, 0, 226);
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 60px;
+}
+
+#sertificate p:nth-child(11) {
+    color: rgb(34, 0, 226);
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 60px;
+    margin-top: 30px;
+}#sertificate p:nth-child(12) {
+    color: rgb(34, 0, 226);
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 60px;
+    margin-top: 30px;
+}#sertificate p:nth-child(13) {
+    color: rgb(34, 0, 226);
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 60px;
+    margin-top: 30px;
+}
+
+#sertificate p:last-child {
+    color: rgb(58, 45, 240);
+    font-weight: 900;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+
+#preloader-scene{
+    width: 600px;
+    height: 600px;
+    margin: 50px;
+}
+
+#preloader1 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate 4s linear infinite;
+}#preloader2 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate 4s linear infinite;
+}#preloader3 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate 4s linear infinite;
+}#preloader4 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate 4s linear infinite;
+}
+
+@keyframes moveAndRotate {
+    0% {
+        transform: translate(0, 0) rotate(0deg); /* Начальная позиция */
+    }
+    25% {
+        transform: translate(150px, 0) rotate(90deg); /* Влево и вращение */
+    }
+    50% {
+        transform: translate(150px, 150px) rotate(180deg); /* Вниз и вращение */
+    }
+    75% {
+        transform: translate(0, 150px) rotate(270deg); /* Вправо и вращение */
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg); /* Вверх и окончательное вращение */
+    }
+}
+
+/* ТАБЛИЦА */
+/* Убираем двойные линии между ячейками */
+table {
+    width: 80%; /* Ширина таблицы */
+    border-collapse: collapse; /* Убираем двойные линии */
+    border: 2px, blue;
+    margin: 20px auto; /* Центрируем таблицу на странице */
+    text-align: center; /* Горизонтальное выравнивание текста */
+    table-layout: fixed; /* Фиксированная ширина столбцов */
+}
+
+/* Стили заголовка таблицы */
+.table-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    font-weight: bold;  
+    color: #333;
+}
+
+/* Стили для заголовков столбцов */
+th {
+    background-color: #251fd4;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #0a0c57;
+}
+
+/* Стили для строк таблицы */
+td {
+    padding: 10px;
+    border: 1px solid #0a0c57;
+    vertical-align: middle; /* Вертикальное выравнивание */
+}
+
+/* Изменяем фон для пустых ячеек */
+td:empty {
+    background-color: red;
+}
+
+/* Стилизация четных строк */
+tbody tr:nth-child(even) {
+    background-color: #7366ee8a;
+}
+
+/* Стилизация нечетных строк */
+tbody tr:nth-child(odd) {
+    background-color: #5ddf756c;
+}
+
+/* Стили для первого столбца */
+td:first-child {
+    font-weight: bold;
+    color: #11082b;
+}
+
+/* Горизонтальное и вертикальное выравнивание */
+tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Выделение столбца при наведении */
+tbody td:hover {
+    background-color: #63c6f0;
+}
+
+/* Стили для контейнера таблицы */
+.table-container {
+    margin: 0 auto;
+    max-width: 90%;
+}

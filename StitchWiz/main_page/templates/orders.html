@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "css/orders.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section>
+    <p class="order-name">{{order_name}}</p>
+    {% for order in orders %}
+        <div class="person">
+            <div class="info">
+                {% if request.user.is_master %}
+                <p class="customer">Заказчик: {{ order.user.username }}</p>
+                {% else %}
+                <p class="master">Мастер: {{ order.master.username }}</p>
+                {% endif %}
+                
+                <p class="product">Услуга: {{ order.product.name }}</p>
+                <p class="order-data">Дата заказа: {{ order.date_order|date:"d/m/Y" }}</p>
+                <p class="release-date">Дата отдачи: {{ order.date_release|date:"d/m/Y" }}</p>
+                {% if order.coupon %}
+                 <p class="coupon">Купон: {{ order.coupon.title }}</p>
+                {% endif %}
+                {% if order.comments %}
+                 <p class="comments">Комментрии: {{ order.comments }}</p>
+                {% endif %}  
+                <p class="price">{{order.get_price}} $</p>
+            </div>
+        </div>
+    {% endfor %}
+</section>
+{% endblock  %}

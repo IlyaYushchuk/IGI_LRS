@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/staffs.css" %}">
+<link rel="stylesheet" href="{% static "css/preloader.css" %}">
+    <link rel="stylesheet" href="{% static "css/staff_table.css" %}">
+{% endblock  %}
+
+{% block content %}
+<div id="preloader">
+    <img id="preloader1" src="/media/main_images/preloader.png" alt="image">
+    <img id="preloader2" src="/media/main_images/preloader.png" alt="image">
+    <img id="preloader3" src="/media/main_images/preloader.png" alt="image">
+    <img id="preloader4" src="/media/main_images/preloader.png" alt="image">
+</div >
+
+<section>
+    <h1>Наш персонал</h1>
+    
+    <button id="addEmployeeBtn">Добавить сотрудника</button>
+
+    <div class="form-container" id="employeeFormContainer">
+        <h3>Добавить сотрудника</h3>
+        <form id="employeeForm">
+            <label for="last_name">Фамилия:</label>
+            <input type="text" id="last_name" name="last_name" required><br><br>
+
+            <label for="first_name">Имя:</label>
+            <input type="text" id="first_name" name="first_name" required><br><br>
+
+            <label for="photo">Фото:</label>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+            <label for="jobDescription">Описание работы:</label>
+            <textarea id="jobDescription" name="jobDescription" required></textarea><br><br>
+
+            <label for="url">URL:</label>
+            <input type="text" id="url" name="url" required><br><br>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required><br><br>
+
+            <label for="email">Почта:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <button disabled id="submitBtn" type="submit">Добавить</button>
+        </form>
+
+        <p id="urlMessage" class="error-message">Неверный формат URL</p>
+        <p id="phoneMessage" class="error-message">Неверный формат номера телефона</p>
+        <p id="successMessage" class="success-message">Все данные введены корректно!</p>
+    </div>
+
+    <div id="searcher">
+        <input type="text" id="search-input" placeholder="Введите текст для поиска">
+        <button id="search-button">Найти</button>
+    </div>
+
+    <table id="employee-list">
+        <thead>
+            <tr>
+                <th data-column="image" data-order="desc">Фото</th>
+                <th data-column="last_name" data-order="desc">Фамилия</th>
+                <th data-column="first_name" data-order="desc">Имя</th>
+                <th data-column="position" data-order="desc">Должность</th>
+                <th data-column="date_joined" data-order="desc">Начал работь</th>
+                <th data-column="email" data-order="desc">Почта</th>
+                <th data-column="phone" data-order="desc">Телефон</th>
+                <th data-column="checkbox" data-order="desc">Премия</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <button id="bonusButton">Премировать</button>
+
+    <div class="pagination">
+        <button id="prevBtn">&#10094;</button>
+        <span id="pageInfo"></span>
+        <button id="nextBtn">&#10095;</button>
+    </div>
+
+    <div id="employee-details" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <div id="bonusInfo"></div>
+
+
+    <script id="employees-data" type="application/json">{{ staff|json_script:"employeesData" }}</script>
+    <script src="{% static "js/staffTableSort.js" %}"></script>
+    <script src="{% static "js/staffPaginator.js" %}"></script>
+{% endblock  %}

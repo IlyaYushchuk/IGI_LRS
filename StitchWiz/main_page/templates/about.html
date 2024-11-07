@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block  css%}
+<link rel="stylesheet" href="{% static "css/about.css" %}">
+<link rel="stylesheet" href="{% static "css/polygon.css" %}">
+{% endblock %}
+
+
+{% block content %}
+<h1 class="title">Пример использования селекторов в CSS</h1>
+ <!-- Селекторы элементов и классов -->
+ <section class="content">
+    <p class="text">Это обычный абзац текста.</p>
+    <p class="highlight">Это выделенный абзац текста.</p>
+    <p class="times">Этот текст написан шрифтом Times New Roman</p>
+    <p class="courier">Этоn текста yfgbcfy ihbanjv Courier</p>
+
+    <h1>COMIC SANS text example</h1>
+    <h1 class='roboto'>Roboto text example</h1>
+    <ul class='hiragana'>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+        <li>1</li>
+    </ul>
+    <div class="flex-container">
+        <div class="flex-item">Мой 1 флекс элемент</div>
+        <div class="flex-item">Мой 2 флекс элемент</div>
+        <div class="flex-item">Мой 3 флекс элемент</div>
+        <div class="flex-item">Мой 4 флекс элемент</div>
+        <div class="flex-item">Мой 5 флекс элемент</div>
+        <div class="flex-item">Мой 6 флекс элемент</div>
+        <div class="flex-item">Мой 7 флекс элемент</div>
+        <div class="flex-item">Мой 8 флекс элемент</div>
+        <div class="flex-item">Мой 9 флекс элемент</div>
+        <div class="flex-item">Мой 10 флекс элемент</div>
+        <div class="flex-item">Мой 11 флекс элемент</div>
+        <div class="flex-item">Мой 12 флекс элемент</div>
+    </div>
+</section>
+
+<!-- Селекторы атрибутов -->
+<div>
+    <a href="https://example.com" target="_blank" class="external-link">Ссылка на внешний сайт</a>
+    <a href="mailto:email@example.com" class="email-link">Отправить email</a>
+</div>
+
+<!-- Комбинация селекторов: селекторы дочерних элементов -->
+<article class="article">
+    <h2 class="article-title">Название статьи</h2>
+    <div class="article-body">
+        <p>Текст статьи...</p>
+    </div>
+</article>
+<article class="article">
+<h class="text-shadow">А ты уже заработал эпилепсию?</h>
+</article>
+<!-- Комбинация селекторов: селекторы потомков -->
+<div class="container">
+    <ul class="list">
+        <li id="t1">Пункт 1</li>
+        <li>Пункт 2</li>
+        <li>Пункт 3</li>
+        <li class="selected">Пункт 4</li>
+    </ul>
+</div>
+<div class="container">
+    <a class="ref-example" href="https://www.example.com">Пример ссылки</a>
+    <input class="input-example" type="text" placeholder="Пример ввода">
+    <button class="button-example">Пример кнопки</button>
+
+    <ul id="ul-ex">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+    </ul>
+    <form>
+        <!-- Доступные элементы (enabled) -->
+        <label for="username">Имя пользователя (доступно):</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <!-- Доступные элементы (enabled) -->
+        <label for="username">Имя пользователя (доступно):</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <!-- Обязательные элементы (required) -->
+        <label for="email">Email (обязательно):</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Заблокированные элементы (disabled) -->
+        <label for="phone">Телефон (заблокировано):</label>
+        <input type="tel" id="phone" name="phone" disabled><br><br>
+
+        <!-- Элементы вне диапазона (invalid) -->
+        <label for="age">Возраст (от 18 до 99):</label>
+        <input type="number" id="age" name="age" min="18" max="99"><br><br>
+
+        <!-- Включенные флажки и переключатели (checked) -->
+        <label for="subscribe">Подписаться:</label>
+        <input type="checkbox" id="subscribe" name="subscribe" checked><br><br>
+
+        <label>Пол:</label>
+        <input type="radio" id="male" name="gender" value="male" checked>
+        <label for="male">Мужской</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Женский</label><br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+    <p lang="ru">
+        <q>Это пример цитаты на русском языке.</q>
+    </p>
+
+    <!-- Английская цитата -->
+    <p lang="en">
+        <q>This is a quotation in English.</q>
+    </p>
+
+    <!-- Французская цитата -->
+    <p lang="fr">
+        <q>Ceci est une citation en français.</q>
+    </p>
+
+    <!-- Немецкая цитата -->
+    <p lang="de">
+        <q>Dies ist ein Zitat auf Deutsch.</q>
+    </p>
+</div>
+<div class="container">
+    <h1>Статья о псевдоэлементах</h1>
+    <p class="highlight">Это пример абзаца, где первая буква выделена. Псевдоэлементы CSS позволяют легко добавлять стили к элементам.</p>
+    <p class="context">Здесь начинается фрагмент текста. <span class="added-text">Это добавленный контекст.</span> Конец фрагмента текста.</p>
+    
+    <h2>Список с символами Юникода</h2>
+    <ul class="unicode-list">
+        <li>Элемент списка 1</li>
+        <li>Элемент списка 2</li>
+        <li>Элемент списка 3</li>
+    </ul>
+</div>
+<div class="container">
+    <h1 class="capital">Заголовок текста</h1>
+    <p class="text">
+        Это пример текстового фрагмента, который демонстрирует различные стили оформления текста. 
+        Здесь мы используем <span class="capital">капитель</span> для выделения некоторых слов, 
+        а также настраиваем <span class="indent">красную строку</span> и межстрочный интервал.
+    </p>
+    <p class="text">Каждый фрагмент текста оформлен с учетом отступов и полей, а также других стилей.</p>
+    <p class="text last-paragraph">
+        Этот текст также включает в себя <span class="highlight">между словами</span> и символами.
+    </p>
+</div>
+
+
+<article>
+    <div class="table-container">
+        <h2 class="table-title">Заголовок Таблицы</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Возраст</th>
+                    <th>Город</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Иван</td>
+                    <td>30</td>
+                    <td>Москва</td>
+                </tr>
+                <tr>
+                    <td>Анна</td>
+                    <td>25</td>
+                    <td></td> <!-- Пустая ячейка -->
+                </tr>
+                <tr>
+                    <td>Сергей</td>
+                    <td>40</td>
+                    <td>Санкт-Петербург</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</article>
+{% comment %} <article>
+    <p><strong>Примеры: листинга, сокрашения, определения и тд </strong></p>
+   
+    
+    <p>Сайт <abbr title="HyperText Markup Language">HTML</abbr> является основным языком разметки для создания веб-страниц.</p>
+    
+    <p><dfn>Алгоритм</dfn> — это набор инструкций, предназначенных для выполнения задачи или решения проблемы.</p>
+    
+    <blockquote cite="https://dzen.ru/a/ZRFaGN_gKhX6xTWW">
+        «В жизни всегда есть две дороги: одна — первая, а другая — вторая»
+    </blockquote>
+
+    <p>Дата и время публикации: <time datetime="2024-09-11T14:30">11 сентября 2024, 14:30</time></p>
+
+    <pre>
+        Жизнь — это река,
+        Течёт и бежит.
+        Не видно конца
+        В пучине дарит.
+    </pre>
+
+    <p>Это строка с потенциальным переводом строки <wbr> в середине. И это было самое сложное задание в этой лабе.</p>
+</article>
+
+<article>
+    <p>Все виды ссылок</p> 
+    <a href="https://pravo.by/" target="_blank">Отдельная вкладка</a>
+    <a href={% static "politika-konfidenczialnosti.pdf" %} download>Скачивание</a>
+    <a href="https://dzen.ru/a/ZRFaGN_gKhX6xTWW">Просто переход</a>
+    <a href="mailto:3952081@gmail.com">Написать на e-mail</a>
+    <a href="tel:+375339935255">Позвонить на +375339935255</a>
+    <a href="#code example">Перейти к версике кода</a>
+    <a href="../static/politika-konfidenczialnosti.pdf#page=5">Перейти к 5 странице в PDF</a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ#t=2m30s">Начать видео с 2:30</a>
+    <ul>
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ul>
+    <ol type="A">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="a">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="1">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="i">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <ol type="I">
+        <li>Первый элемент</li>
+        <li>Второй элемент</li>
+        <li>Третий элемент</li>
+    </ol>
+    <dl>
+        <dt>HTML</dt>
+        <dd>Язык разметки гипертекста, используемый для создания веб-страниц.</dd>
+
+        <dt>CSS</dt>
+        <dd>Язык стилей, используемый для описания внешнего вида веб-страниц, написанных на HTML.</dd>
+
+        <dt>JavaScript</dt>
+        <dd>Язык программирования, используемый для создания динамических и интерактивных элементов на веб-страницах.</dd>
+    </dl>
+    <figure>
+        <img src={% static "deps/images/baseavatar.jpg" %} alt="Пример изображения" width="300" height="200">
+        <figcaption>Подпись к изображению: Пример изображения</figcaption>
+    </figure>
+    <nav>
+        <ul>
+            <li><a href="#home">1</a></li>
+            <li><a href="#about">2</a></li>
+            <li><a href="#services">3</a></li>
+            <li><a href="#contact">4</a></li>
+        </ul>
+    </nav>
+    <nav>
+        <a href="#home">1</a>
+        <a href="#home">2</a>
+        <a href="#home">3</a>
+        <a href="#home">4</a>
+    </nav>
+    <form>
+        <label for="options">Выберите опцию:</label>
+        <select id="options" name="options" required >
+            <option value="option1">Опция 1</option>
+            <option value="option2">Опция 2</option>
+            <option value="option3">Опция 3</option>
+            <option value="option4">Опция 4</option>
+        </select>
+    </form>
+    <p>Адаптивное изображение</p>
+
+      
+        <img src="{%static "deps/images/html-mascout-min.png"%}" 
+            alt="Пример изображения" 
+            width="50%" 
+            height="auto">
+
+</article>
+
+<article>
+    <strong style="color: red; font-size: 18px;">Информация о нашей компании: {{ info.info }}</strong><br>
+    <em>Реквизиты: {{ info.props }}</em><br>
+    <p>История по годам: <mark>{{ info.history }}</mark></p><br>
+    <div>
+        <img src="{{ info.logo.url }}" alt="photo_error">
+    </div>
+    
+ </article> {% endcomment %}
+
+
+
+    <div id="sertificate">
+        <div>
+            <div>
+                <p>СЕРТИФИКАТ О ПРОВЕРКЕ</p>
+                <p>РОСКОМНАДЗОР</p>
+
+                <p>Настоящим удостоверяется, что сайт <strong>StitchWiz</strong>, расположенный по адресу <strong>http://127.0.0.1:8000/</strong>, прошел проверку на соответствие требованиям законодательства Российской Федерации о защите персональных данных и информационной безопасности.</p>
+
+                <p><strong>Дата проверки</strong>: <time datetime="1984-12-7">10.09.2024</time></p>
+                <p><strong>Номер проверки</strong>: 1666</p>
+                <p><strong>Результаты проверки</strong>: Соответствует требованиям законодательства РФ.</p>
+                <div class="z1">
+                </div>
+                <div class="z2">
+                </div>
+                <p>Проверенные аспекты:</p>
+                <ul>
+                    <li>Соответствие <a href="https://pravo.by/" target="_blank">Федеральному закону №152-ФЗ «О персональных данных»</a>;</li>
+                    <li>Соблюдение требований к хранению и обработке персональных данных;</li>
+                    <li>Защита информации от несанкционированного доступа;</li>
+                    <li>Выполнение технических и организационных мер по защите данных.</li>
+                </ul>
+                <p>Заключение:</p>
+                <p>По итогам проверки, сайт <strong>StitchWiz</strong> соответствует установленным требованиям Роскомнадзора и может продолжать свою деятельность в рамках правового поля Российской Федерации.</p>
+
+                <p><strong>Подпись проверяющего лица</strong>:</p>
+                <p>Липов Адрей Юрьевич</p>
+                <p>Должность: глава отделки проверки и соответсвия Роскомнадзора</p>
+                <p>Дата: <time datetime="1984-12-7">10.09.2024</time></p>
+            </div>
+            
+        </div> 
+        
+    </div>
+    <div id="preloader-scene">
+        <img id="preloader1" src="/media/main_images/preloader.png" alt="image">
+        <img id="preloader2" src="/media/main_images/preloader.png" alt="image">
+        <img id="preloader3" src="/media/main_images/preloader.png" alt="image">
+        <img id="preloader4" src="/media/main_images/preloader.png" alt="image">
+        
+    </div >
+{% endblock %}
+
+
+
+

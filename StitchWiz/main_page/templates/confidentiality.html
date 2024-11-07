@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/confidentiality.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <article class="conf-article">
+        <a class="confidentiality" href={% static "politika-konfidenczialnosti.pdf" %} download>Политика конфиденциальности</a>
+        <iframe src="https://www.vsemayki.ru/" width="600" height="400"></iframe>
+    </article>
+{% endblock  %}

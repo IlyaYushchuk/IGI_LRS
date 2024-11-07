@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+   <link rel="stylesheet" href="{% static "css/coupons.css" %}">
+{% endblock  %}
+
+{% block content %}
+<section>
+    <h1 class="coupons">Купоны</h1>
+    {% for coupon in valid_coupons %}
+        <div class="coupon">
+            <div class="info">
+                <h4 class="coupon-name">Название: {{ coupon.title }}</h4>
+                <p class="coupon-code">Код: {{ coupon.code }}</p>
+                <p class="coupon-date">Действителен до: {{ coupon.date|date:"d/m/Y" }}</p>
+                <p class="coupon-info">Описание: {{ coupon.some_info }}</p>
+                <p class="coupon-discont">Скидка: {{ coupon.discount }}%</p>
+            </div>
+        </div>
+    {% endfor %}
+    <h1 class="expaired-coupons">Истекшие купоны</h1>
+    {% for coupon in expired_coupons %}
+        <div class="coupon">
+            <div class="info">
+                <h4 class="coupon-name">Название: {{ coupon.title }}</h4>
+                <p class="coupon-code">Код: {{ coupon.code }}</p>
+                <p class="coupon-date">Действителен до: {{ coupon.date|date:"d/m/Y" }}</p>
+                <p class="coupon-info">Описание: {{ coupon.some_info }}</p>
+                <p class="coupon-discont">Скидка: {{ coupon.discount }}%</p>
+            </div>
+        </div>
+    {% endfor %}
+</section>
+{% endblock  %}

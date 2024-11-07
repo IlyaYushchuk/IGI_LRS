@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/cart.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <article class="cart">
+        {% for item in items %}
+            <p class="product">{{ item.product.name }} - {{ item.quantity }}</p>
+            <button class="add-to-cart"><a href="{% url "cart:edit_cart" item.id 1 %}">+</a></button>
+            <button class="sub-from-cart"><a href="{% url "cart:edit_cart" item.id 2 %}">-</a></button>
+            <button class="delete-from-cart"><a href="{% url "cart:delete_from_cart" item.id %}">Удалить</a></button>
+        {% endfor %}
+    </article>
+    <button class="payment"><a href="{% url "cart:cart_payment" %}">К оплате</a></button>
+{% endblock  %}

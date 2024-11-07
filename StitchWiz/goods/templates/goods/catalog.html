@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+{% load goods_tags %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static "css/catalog.css" %}">
+{% endblock  %}
+
+{% block content %}
+<div class="row">
+    <div class="filter-container">
+    <div class="dropdown">
+        <button class="btn" type="button">
+            Фильтры
+        </button>
+        <form action="{% if request.GET.q %}{% url "catalog:search"%} {% else %}{% url "catalog:index" slug_url %}{% endif %}" method="get" class="dropdown-menu">
+            <div class="form-check text-white">
+                <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {% if request.GET.on_sale == 'on' %}checked{% endif %}>
+                {% if request.GET.q %}
+                    <input type="hidden" name="q" value="{{request.GET.q}}">
+                {% endif %} 
+                <label class="form-check-label" for="flexCheckDefault">
+                    Товары по акции
+                </label>
+            </div>
+            <p class="text-white">Сортировать:</p>
+            <div class="form-check text-white">
+                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" 
+                    {% if not request.GET.order_by or request.GET.order_by == 'default' %}
+                        checked
+                    {% endif %}>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    По умолчанию
+                </label>
+            </div>
+            <div class="form-check text-white">
+                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price" {% if request.GET.order_by == 'price' %}checked{% endif %}>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    От дешевых к дорогим
+                </label>
+            </div>
+            <div class="form-check text-white">
+                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" {% if request.GET.order_by == '-price' %}checked{% endif %}>
+                <label class="form-check-label" for="flexRadioDefault3">
+                    От дорогих к дешевым
+                </label>
+            </div>
+            <button type="submit" class="btn">Применить</button>
+        </form>
+    </div>
+</div>
+    
+    <div class="product-grid">
+    {% for product in goods %}
+        <div class="product-card">
+            
+                {% if product.image %}
+                    <img class="product-img" src="{{ product.image }}">
+                {% else %}
+                    <img class="product-img" src="{% static "deps/images/Not found image.png" %}">
+                {% endif %}
+                <p class="product-id">id: {{product.display_id}}</p>
+                <p class="product-text">Цена: <strong>{{product.sell_price}} $</strong></p>
+                <p class="product-title">{{product.name}}</p>
+                <p class="product-text">{{product.description}}</p>
+                <div class="center-btn">
+                    <a class="product-reference"href="{% url "catalog:product" product.slug %}">Подробнее
+                    </a>
+                </div>
+                </div>
+
+    {% endfor %}
+    </div>
+
+</div>
+<div class="paginator pagination">
+    <ul class="paginator-list">
+            <li class="page-item">
+              <button id="prevBtn" class="page-link">
+                Previous</button>
+            </li>
+             
+            <li class="page-item" >
+                <button id="pageInfo" class="page-link" >
+                    <span >Страница 1</span>
+                </button>
+            <li>
+
+            <li class="page-item">
+                <button id="nextBtn" class="page-link" >Next</button>
+            </li>
+    </ul>
+</div>
+
+
+
+    
+
+
+
+<script id="goods-data" type="application/json">{{ goods|json_script:"goodsData" }}</script>
+
+<script src="{% static "js/paginator.js" %}"></script>
+<script src="{% static "js/animation.js" %}"></script>
+{% endblock content %}
+
+

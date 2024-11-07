@@ -1,0 +1,353 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,400italic&subset=latin,cyrillic); 
+@font-face {
+    font-family: 'Comic Sans';
+    src: url('fonts/comic-sans-ms.woff2') format('woff2'),
+         url('fonts/comic-sans-ms.woff') format('woff'),
+         url('fonts/comic-sans-ms.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@media (max-width: 600px) {
+    body {
+        background-color: lightgreen; /* Фон станет светло-голубым на узких экранах */
+    }
+}
+.flex-container {
+    display: flex;                /* Определение Flex-контейнера */
+    flex-wrap: wrap;
+    flex-direction: row;           /* Горизонтальное направление элементов (по умолчанию) */
+    justify-content: space-around; /* Распределение элементов с равными отступами */
+    align-items: center;           /* Выравнивание элементов по центру по вертикали */
+    height: 100vh;                 /* Высота контейнера — 100% высоты экрана */
+    border: 2px solid #333;        /* Обводка контейнера */
+    background-color: #f4f4f4;     /* Фоновый цвет контейнера */
+}
+.flex-item {
+    background-color: #008cba;     /* Фон элемента */
+    color: white;                  /* Цвет текста */
+    padding: 20px;                 /* Внутренние отступы */
+    margin: 10px;                  /* Внешние отступы */
+    text-align: center;             /* Центрирование текста */
+    border-radius: 8px;            /* Скругление углов */
+    flex-grow: 0;                  /* Элемент расширяется, чтобы занять доступное пространство */
+    flex-basis: 150px;             /* Минимальный размер элемента */
+}
+/* Селекторы элементов */
+.roboto{
+    font-family: "Roboto", sans-serif;  
+
+}
+.hiragana{
+    list-style-type: hiragana;
+}
+.hiragana li:before{
+    content: "@";
+}
+
+.hiragana li:nth-child(even) {
+    list-style-position : inside;
+    }
+.hiragana li:nth-child(odd) { 
+    list-style-position : outside;
+    }
+    
+.hiragana li{
+    background-color: #27ae60;
+    margin:10px;
+}
+
+h1 {
+    font-family: 'Comic Sans MS', sans-serif;
+    font-size: 24px;
+    color: #333;
+}
+.text-shadow{
+text-shadow: 0 0 4px white, 
+0 -5px 4px violet, 
+2px -10px 6px indigo, 
+-2px -15px 11px blue, 
+2px -25px 18px green, 
+-2px -40px 25px yellow, 
+2px -60px 33px orange, 
+0px -85px 40px red; 
+}
+/* Селекторы классов */
+.title {
+    font-family:'Times New Roman', Times, serif;
+    text-align: center;
+    color: #2c3e50;
+}
+p {
+    font-family:fantasy;
+}
+.text {
+    font-size: 16px;
+    color: #444;
+}
+
+.highlight {
+    font-size: 16px;
+    color: #ff6347;
+    font-weight: bold;
+}
+
+/* Селекторы атрибутов */
+/* Элемент, у которого атрибут href начинается с "https" */
+a[href^="https"] {
+    color: blue;
+}
+
+/* Элемент, у которого атрибут href заканчивается на ".com" */
+a[href$=".com"] {
+    text-decoration: underline;
+}
+
+/* Элемент, у которого атрибут href равен значению "mailto:email@example.com" */
+a[href="mailto:email@example.com"] {
+    color: green;
+}
+
+/* Комбинация селекторов (селекторы дочерних элементов) */
+.article > .article-title {
+    font-size: 20px;
+    color: #000;
+}
+
+/* Комбинация селекторов (селекторы потомков) */
+.container .list li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+#t1 + li{
+    color:red;
+}
+
+#t1 ~ li{
+    background-color:white;
+}
+/* Комбинация селекторов (логическое И: элемент с определенным классом) */
+.container .list li.selected {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+
+/* Непосещенные ссылки */
+.ref-example:link {
+    color: blue;
+    text-decoration: none;
+}
+
+/* Посещенные ссылки */
+.ref-example:visited {
+    color: purple;
+}
+
+/* Ссылки при наведении */
+.ref-example:hover {
+    color: red;
+    text-decoration: underline;
+    
+}
+
+/* Ссылки в момент нажатия */
+.ref-example:active {
+    color: green;
+    font-weight: bold;
+}
+
+/* Элементы в фокусе */
+.input-example:focus {
+    border: 2px solid blue;
+    outline: none;
+}
+
+/* Кнопка в фокусе */
+.button-example:focus {
+    outline: 2px dashed orange;
+}
+.button-example {
+    width: 50px;
+    height:50px;
+    border: 2px, gray;
+    cursor:copy;
+}
+
+/* Стили для фокусировки на ссылках */
+.ref-example:focus {
+    background-color: yellow;
+    color: black;
+    outline: none;
+}
+
+
+#ul-ex li:first-child {
+    color: red;
+    font-weight: bold;
+}
+
+/* Стили для последнего элемента списка */
+#ul-ex li:last-child {
+    color: blue;
+    font-style: italic;
+}
+/* Стили для третьего элемента списка */
+#ul-ex li:nth-child(3) {
+    text-transform: uppercase;
+    border: 2px solid green;
+}
+/* Стили для каждого второго элемента списка */
+#ul-ex li:nth-child(even) {
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+#ul-ex li:nth-child(even):after {
+    content: " im even!";
+}
+
+/* Стили для доступных элементов (enabled) */
+input:enabled {
+    background-color: #e0ffe0; /* Светло-зелёный фон */
+    border: 2px solid green;
+}
+
+/* Стили для заблокированных элементов (disabled) */
+input:disabled {
+    background-color: #ffe0e0; /* Светло-красный фон */
+    border: 2px solid red;
+    color: gray;
+}
+
+/* Стили для обязательных элементов (required) */
+input:required {
+    background-color: #ffffe0; /* Светло-жёлтый фон */
+    border: 2px dashed orange;
+}
+
+/* Стили для элементов вне диапазона или с некорректным значением (invalid) */
+input:invalid {
+    background-color: #f33ccb7a; /* Светло-красный фон */
+    border: 2px solid rgb(255, 0, 204);
+}
+
+/* Стили для включённых флажков и переключателей (checked) */
+input:checked { 
+    outline: 2px solid blue;
+}
+
+/* Стили для фокуса на элементе (взаимодействие с элементом) */
+input:focus {
+    border: 2px solid blue;
+    background-color: #f0f8ff; /* Светло-голубой фон */
+}
+
+p[lang="ru"] q {
+    quotes: "«" "»"; /* Русские кавычки ёлочки */
+}
+
+/* Английский язык */
+p[lang="en"] q {
+    quotes: "“" "”"; /* Английские двойные кавычки */
+}
+
+/* Французский язык */
+p[lang="fr"] q {
+    quotes: "«" "»"; /* Французские кавычки ёлочки */
+}
+
+/* Немецкий язык */
+p[lang="de"] q {
+    quotes: "„" "“"; /* Немецкие кавычки */
+}
+
+/* Общее для всех кавычек: отступы перед и после */
+q {
+    font-style: italic;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+
+/* Стили для выделения первой буквы */
+.highlight::first-letter {
+    font-size: 2em;  /* Увеличиваем размер первой буквы */
+    font-weight: bold; /* Делаем букву жирной */
+    color: #2980b9; /* Изменяем цвет */
+}
+
+/* Добавление контекста в начале и конце текста */
+.context {
+    position: relative; /* Для абсолютного позиционирования псевдоэлементов */
+}
+
+.context::before {
+    content: "Начало: "; /* Добавляем текст перед фрагментом */
+    font-weight: bold; /* Жирный текст */
+    color: #27ae60; /* Цвет текста */
+}
+
+.context::after {
+    content: " :Конец"; /* Добавляем текст после фрагмента */
+    font-weight: bold; /* Жирный текст */
+    color: #e74c3c; /* Цвет текста */
+}
+
+/* Оформление списка с символами Юникода */
+.unicode-list {
+    list-style-type: none; /* Убираем стандартные маркеры */
+    padding: 0; /* Убираем отступы */
+}
+
+.unicode-list li::before {
+    content: "➜ "; /* Используем символ Юникода в качестве маркера */
+}
+
+/* Изменение стиля при выделении текста */
+::selection {
+    background-color: #2980b9; /* Цвет фона выделенного текста */
+    color: white; /* Цвет текста */
+}
+
+/* Стили для заголовка */
+.title {
+    text-align: center;       /* Выравнивание заголовка по центру */
+    text-transform: uppercase; /* Преобразование текста в верхний регистр */
+    margin-bottom: 20px;      /* Отступ снизу */
+}
+
+/* Стили для текста */
+.text {
+    font-size: 16px;          /* Размер шрифта */
+    line-height: 20px;         /* Межстрочный интервал */
+    text-indent: 30px;        /* Красная строка */
+    margin: 10px 0;          /* Отступы сверху и снизу */
+    word-spacing: 2px;        /* Интервал между словами */
+    letter-spacing: 1px;      /* Интервал между символами */
+    text-align: justify;       /* Выравнивание текста по ширине */
+}
+.times {
+    font-family: "Times New Roman", serif; /* определяем основной шрифт "Times New Roman", альтернативный  serif (с засечками)*/
+    }
+.courier {
+    font-family: Courier, monospace; /* определяем основной шрифт "Courier", альтернативный monospace (семейство моноширинных шрифтов) */
+    }
+    
+/* Стили для капителей */
+.capital {
+    font-weight: 900;
+    font-variant: small-caps; /* Использование капители */
+}
+
+/* Стили для последнего абзаца */
+.last-paragraph {
+    word-break: break-word;   /* Перенос слов, если они не помещаются */
+    overflow-wrap: break-word; /* Разрыв слов при необходимости */
+}
+
+/* Подсветка текста */
+.highlight {
+    color: red;               /* Цвет подсвеченного текста */
+    font-weight: bold;        /* Жирный шрифт */
+}

@@ -1,0 +1,39 @@
+/* Общие стили для заголовка */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Стили для вопросов */
+summary.question {
+    font-size: 1.5rem;
+    color: #2980b9;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 0;
+    list-style: none;
+    outline: none;
+}
+
+/* Стили для текста ответа */
+.answer {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Стили для даты */
+.date {
+    font-size: 0.9rem;
+    color: red;
+    margin-top: 5px;
+}
+
+/* Стили для раскрытого вопроса */
+details[open] .question {
+    font-weight: bold;
+}

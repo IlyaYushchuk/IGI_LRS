@@ -1,0 +1,50 @@
+/* Общие стили для контейнера заказа */
+.person {
+    background-color: #f9f9f9; /* Легкий фон для каждого заказа */
+    border: 1px solid #e0e0e0; /* Граница вокруг */
+    border-radius: 10px; /* Скругленные углы */
+    padding: 15px; /* Отступы внутри контейнера */
+    margin-bottom: 20px; /* Отступы между заказами */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Стили для блока информации */
+.info {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы друг под другом */
+    gap: 10px; /* Отступы между элементами */
+}
+
+/* Стили для заголовка заказа */
+.order-name {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Отступ под заголовком */
+    text-align: center; /* Центрирование текста */
+    color: #070606;
+}
+
+/* Стили для каждого текстового элемента заказа */
+.customer, .master, .product, .order-data, .release-date, .coupon, .comments, .price {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Стили для цены */
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e7c23c; /* Красный цвет для выделения цены */
+}
+
+/* Подчеркивание купонов и комментариев */
+.coupon, .comments {
+
+    color: #2fbc3d; /* Голубой цвет для выделения */
+}
+
+/* Отдельные стили для дат */
+.order-data, .release-date {
+    font-size: 14px;
+    color: #101f64;
+}

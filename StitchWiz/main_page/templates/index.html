@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block  css%}
+<link rel="stylesheet" href="{% static "css/index.css" %}"></link>
+<link rel="stylesheet" href="{% static "css/slider.css" %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <section>   
+    <h1 class="main-content"><strong>{{ content }}</strong></h1>
+    
+    <article class="partners">
+        <h1>Наши партнеры</h1>      
+        <div class="slider">
+            <div class="slider-wrapper">
+                {% for partner in partners%}
+                <div class="slide"><a href="{{ partner.ref }}"><span class="counter"></span><img src="{{ partner.image.url }}" alt="Image"><span class="image-text">{{ partner.name }}</span></a></div>
+                {% endfor %}
+            </div>
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+            <div class="pag">
+                {% for partner in partners%}
+                <div></div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if user.is_superuser %}
+        <form id="sliderSettingsForm">
+            <h2>Настройки слайдера</h2>
+            <label>
+              <input type="checkbox" id="allowCycle" checked> Разрешить цикличность прокрутки
+            </label><br>
+            
+            <label>
+              <input type="checkbox" id="showArrows" checked> Показать стрелки
+            </label><br>
+            
+            <label>
+              <input type="checkbox" id="showPagination" checked> Показать пагинатор
+            </label><br>
+            
+            <label>
+              <input type="checkbox" id="allowAutoScroll" checked> Разрешить автопрокрутку
+            </label><br>
+            
+            <label>
+              <input type="checkbox" id="allowHoverPause" checked> Останавливать прокрутку при наведении курсора
+            </label><br>
+            
+            <label for="autoScrollTime">Время автопрокрутки (в секундах):</label>
+            <input type="number" id="autoScrollTime" value="5" min="1"><br>
+            
+            <button type="button" id="applySettings">Применить</button>
+        </form>  
+        {% endif %}
+    </article>
+    
+    <article class="banner">
+        <figure class="banner" id="img">
+            <img src="{% static 'deps/images/banner1.jfif' %}" alt="photo_error">
+        </figure>
+    </article>  
+
+    <article class="banner">
+        <figure class="banner" id="img">
+            <img src="{% static 'deps/images/banner1.jfif' %}" alt="photo_error">
+        </figure>
+    </article>  
+
+
+    <article class="last-new">
+        <h1>Последняя опубликованная новость</h1>
+        <h1>{{ new.title }}</h1>
+        <div class="new">
+            {% if new.image %}
+                <figure id="img">
+                    <img src="{{ new.image.url }}" alt="photo_error">
+                </figure>
+            {% endif %}
+            <div class="info">
+                <p>{{ new.text }}</p>
+            </div>
+        </div>
+    </article>
+
+  
+    
+    
+    <article id="scene">
+        <img id="boot" src="media/main_images/boot.png" alt="image">
+        <img id="boot_wh" src="media/main_images/boot_with_hole.png" alt="image">
+        <img id="needle" src="media/main_images/needle.png" alt="image">
+        <img id="nail_and_hammer" src="media/main_images/nail_and_hammer.png" alt="image">
+        <img id="t-shirt" src="media/main_images/t-shirt.png" alt="image">
+        <img id="t-shirt_wh" src="media/main_images/t-shirt_with_hole.png" alt="image">
+        <h1>StitchWiz</h1>
+    </article>  
+    </section>
+    
+    <script src="{% static "js/slider.js" %}"></script>
+{% endblock %}
+
+
+
+

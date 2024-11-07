@@ -1,0 +1,61 @@
+.news {
+    margin: 0;
+    padding: 10px;
+    font-size: 40px;
+    text-align: center;
+}
+
+
+.new-image {
+    width: 150px;
+    height: auto;
+    margin:10px;
+    border-radius: 15px;
+}
+
+.new {
+    padding: 10px;
+    display: flex;
+}
+
+.new-title{
+    font-style: italic;
+    size:30px;
+}
+.new-info{
+    color: rgb(129, 129, 129);
+    width: 600px; /* Задаем ширину контейнера */
+    white-space: nowrap; /* Отключаем перенос текста на новую строку */
+    overflow: hidden; /* Скрываем лишний текст */
+    text-overflow: ellipsis; /* Добавляем многоточие, если текст не помещается */
+}
+.info {
+    width: 980px;
+}
+
+.info p {
+    padding-left: 10px;
+    text-align: justify;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.read-more-btn {
+    background-color: #008CBA; /* Цвет кнопки */
+    border: none; /* Убираем рамку */
+    color: white; /* Цвет текста */
+    padding: 10px 20px; /* Внутренние отступы */
+    text-align: center; /* Выравнивание текста */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-size: 16px; /* Размер текста */
+    margin: 10px 0; /* Отступы вокруг кнопки */
+    border-radius: 5px; /* Закругленные углы */
+}
+
+.read-more-btn:hover {
+    background-color: #005f6b; /* Цвет при наведении */
+    transform: scale(1.05); /* Увеличение при наведении */
+}

@@ -1,0 +1,23 @@
+.new-title {
+    margin: 0;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.new-image {
+    display: block;
+    padding: 20px;
+    margin: auto;
+    width: 500px;
+    border-radius: 100px;
+}
+
+.info p {
+    padding: 20px;
+    white-space: pre-line;
+    text-align: justify;
+    font-size: larger;
+    font-weight: 400;
+    column-count: 3;
+}

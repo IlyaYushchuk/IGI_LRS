@@ -1,0 +1,435 @@
+.main-content {
+    font-family: 'Impact', sans-serif; /* Насыщенный шрифт */
+    font-size: 5rem; /* Очень крупный размер */
+    text-transform: uppercase; /* Преобразование текста в верхний регистр */
+    color: #ff1a75; /* Яркий цвет */
+    background: linear-gradient(45deg, #ff1a75, #f90, #4de5ff); /* Градиентный фон */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent; /* Делает текст прозрачным, чтобы показать градиент */
+    
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.8); /* Многослойные тени */
+    
+    border: 5px solid #4de5ff; /* Яркая рамка */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 15px; /* Закругленные края */
+
+    animation: flashy-text 2s infinite alternate; /* Анимация */
+
+
+    letter-spacing: 3px; /* Увеличенное расстояние между буквами */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+/* Анимация изменения размера */
+@keyframes flashy-text {
+    0% {
+        transform: scale(1); /* Исходное состояние */
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        transform: scale(1.2); /* Увеличение и поворот */
+        text-shadow: 6px 6px 20px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 1);
+    }
+}
+
+article.banner {
+    margin: 20px auto; /* Центрирование статьи и отступы */
+    max-width: 800px; /* Максимальная ширина для контента */
+    border: 1px solid #ddd; /* Серая рамка вокруг статьи */
+    border-radius: 10px; /* Закругленные углы рамки */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Тень для глубины */
+    overflow: hidden; /* Скрывает любые выходящие элементы */
+}
+
+.banner {
+    position: relative; /* Для позиционирования внутри фигуры */
+    overflow: hidden; /* Скрывает части изображения, выходящие за границы */
+    border-radius: 10px; /* Закругленные углы для фигуры */
+}
+
+.banner img {
+    width: 100%; /* Изображение занимает 100% ширины фигуры */
+    height: auto; /* Сохранение пропорций изображения */
+    transition: transform 0.3s ease; /* Плавный переход при наведении */
+}
+
+.banner:hover img {
+    transform: scale(1.1); /* Увеличение изображения при наведении */
+}
+
+/* Подпись к изображению (если потребуется) */
+figcaption {
+    text-align: center; /* Центрирование текста */
+    font-size: 1.2rem; /* Размер шрифта для подписи */
+    color: #555; /* Цвет текста */
+    padding: 10px; /* Отступы вокруг текста */
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для читаемости */
+    border-radius: 5px; /* Закругленные углы */
+    margin-top: 10px; /* Отступ сверху от изображения */
+}
+
+
+.last-new {
+    position: relative;
+    top: 10px; /* Сдвиг сверху */
+    left: 10px; /* Сдвиг слева */
+    font-family: 'Times New Roman', serif; /* Классический газетный шрифт */
+    background-color: #efeeed; /* Легкий бежевый цвет для газетного эффекта */
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+
+}
+
+
+/* Стили заголовков */
+.last-new h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+}
+
+/* Изображение */
+.last-new #img {
+    float:left; /* Изображение слева от текста */
+    margin: 0 15px 15px 0;
+    border: 1px solid #ddd; /* Рамка вокруг изображения */
+    padding: 5px;
+    background-color: #fff; /* Белая подложка */
+    border-radius: 5px;
+}
+
+.last-new #img img {
+    display: block;
+    width: 100%; /* Картинка будет занимать всю ширину родительского контейнера */
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Основной текст новости */
+.last-new .info {
+    text-align: justify; /* Выравнивание по ширине, как в газетах */
+    line-height: 1.6; /* Интерлиньяж для удобного чтения */
+    column-count: 2; /* Разбиваем текст на 2 колонки */
+    column-gap: 40px; /* Пространство между колонками */
+    column-rule: 1px solid #000000; /* Линия между колонками */
+    padding-top: 20px;
+    font-size: 1.1em; /* Размер текста */
+    color: #333; /* Цвет текста */
+}
+
+/* Параграфы текста */
+.last-new p {
+    margin-bottom: 20px;
+}
+
+
+/* Оформление партнеров */
+/* Основной контейнер для партнеров */
+.partners {
+    
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.partners h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    color: #333; /* Измените цвет по вашему усмотрению */
+    padding: 10px;
+    border-radius: 5px; /* Закругленные углы */
+}
+
+/* Контейнер для каждого партнера */
+.partner-item {
+    display: block;
+    align-items: center;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+/* Лого партнера */
+.partner-item figure {
+    margin: 0 20px 0 0;
+    flex-shrink: 0; /* Чтобы лого не сжималось */
+}
+
+.partner-item img {
+    width: 200px;
+    height: auto;
+    border-radius: 50%; /* Закругляем края изображения */
+    transition: transform 0.3s ease; /* Анимация увеличения при наведении */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+.partner-item #img img {
+    box-shadow: 40px 0px 80px rgba(255, 2, 2, 0.5); /* Тень вокруг изображения */
+}
+
+.partner-item img:hover {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
+
+.partner-item a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Comic Sans MS', 'Comic Sans';
+    letter-spacing: 20px;
+}
+/* Эффект увеличения текста при наведении */
+.partner-item a:hover {
+    color: #db3437; /* Меняем цвет при наведении */
+}
+
+.description{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px; /* Размер шрифта */
+    color: #757575; /* Цвет текста */
+}
+
+
+/* ANIMATION */
+#scene {
+    position: relative;
+    height: 300px;
+    margin: 50px;
+}
+#scene img, #scene h1 {
+    position: absolute;
+}
+
+#t-shirt_wh {
+    left: -50px;
+    bottom: -40px;
+}
+
+#boot, #boot_wh, #needle, #nail_and_hammer, #t-shirt, #scene h1 {
+    opacity: 0;
+}
+#scene h1 {
+    animation-name: name;
+    animation-delay: 12s;
+    animation-duration:3s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes name {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+        left: 50px;
+        bottom: 50px;
+    }
+    100% {
+        transform: scale(5);
+        opacity: 1;
+        left: 150px;
+        bottom: 150px;
+    }
+}
+
+#needle{
+    animation-name: needle;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes needle {
+    0% {
+        opacity: 1;
+        left: 300px;
+        top: 150px;
+        z-index:10;
+    }
+    50% {
+        left: 130px;
+        top: 150px;
+        opacity: 1;
+    }
+    75% {
+        left: 130px;
+        top: 150px;
+        opacity: 1;
+    }
+    76%{
+        top: 150px;
+        left: 130px;
+        opacity: 0;
+    }
+    100% {
+        top: 150px;
+        left: 130px;
+        opacity: 0;
+    }
+}
+
+#t-shirt_wh{
+    animation-name: t-shirt_wh;
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes t-shirt_wh {
+    0% {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+    }
+}
+
+#t-shirt{
+    animation-name: t-shirt;
+    animation-delay: 2s;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    
+    animation-fill-mode: forwards;
+}
+@keyframes t-shirt {
+    0% {
+        left:-55px;
+        top:30px;
+        opacity: 0;
+    }
+    50%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1;
+    }
+    99%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1; 
+    }
+    100%{
+        left:-55px;
+        top:30px;
+        opacity: 0; 
+    }
+}
+
+#boot_wh{
+    animation-name: boot_wh;
+    animation-delay: 6s;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes boot_wh {
+    0% {
+        left:-55px;
+        top:30px;
+        opacity: 0;
+    }
+    1%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1;
+    }
+    99%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1; 
+    }
+    100%{
+        left:-55px;
+        top:30px;
+        opacity: 0; 
+    }
+}
+
+#boot{
+    animation-name: boot_wh;
+    animation-delay: 6s;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes boot_wh {
+    0% {
+        left:-55px;
+        top:30px;
+        opacity: 0;
+    }
+    1%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1;
+    }
+    99%
+    {
+        left:-55px;
+        top:30px;
+        opacity: 1; 
+    }
+    100%{
+        left:-55px;
+        top:30px;
+        opacity: 0; 
+    }
+}
+
+#nail_and_hammer{
+    animation-name: nail_and_hammer;
+    animation-delay: 6s;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes nail_and_hammer {
+    0% {
+        opacity: 1;
+        left: 300px;
+        top: 70px;
+        z-index:10;
+    }
+    50% {
+        left: 130px;
+        top: 70px;
+        opacity: 1;
+    }
+    80% {
+        left: 130px;
+        top: 70px;
+        opacity: 1;
+    }
+    81%{
+        
+        left: 130px;
+        top: 70px;
+        opacity: 0;
+    }
+    100% {
+        left: 130px;
+        top: 70px;
+        opacity: 0;
+    }
+}

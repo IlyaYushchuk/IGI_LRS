@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static "css/payment.css" %}">
+{% endblock  %}
+
+{% block content %}
+    <section class="section">
+        <p class="total">Итого: {{ total }} $</p>
+        <button class="btn1"><a class="a" href="#">Оплатить</a></button>
+    </section>
+{% endblock  %}

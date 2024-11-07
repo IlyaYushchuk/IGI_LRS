@@ -1,0 +1,97 @@
+#preloader{
+    width: 600px;
+    height: 600px;
+}
+
+#preloader1 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate 4s linear infinite;
+}#preloader2 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate1 4s linear infinite;
+}#preloader3 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate3 4s linear infinite;
+}#preloader4 {
+    margin: 50px;
+    width: 100px;   
+    animation-duration: 8s;
+    animation: moveAndRotate2 4s linear infinite;
+}
+
+@keyframes moveAndRotate {
+    0% {
+        transform: translate(0, 0) rotate(0deg); /* Начальная позиция */
+    }
+    25% {
+        transform: translate(150px, 0) rotate(90deg); /* Влево и вращение */
+    }
+    50% {
+        transform: translate(150px, 150px) rotate(180deg); /* Вниз и вращение */
+    }
+    75% {
+        transform: translate(0, 150px) rotate(270deg); /* Вправо и вращение */
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg); /* Вверх и окончательное вращение */
+    }
+}
+
+@keyframes moveAndRotate1{
+    0% {
+        transform: translate(0, 0) rotate(0deg); /* Начальная позиция */
+    }
+    25% {
+        transform: translate(0, 150px) rotate(90deg); /* Вниз и вращение */
+    }
+    50% {
+        transform: translate(-150px, 150px) rotate(180deg); /* Влево и вращение */
+    }
+    75% {
+        transform: translate(-150px, 0) rotate(270deg); /* Вверх и вращение */
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg); /* Вправо и окончательное вращение */
+    }
+}
+@keyframes moveAndRotate2 {
+    0% {
+        transform: translate(0, 0) rotate(0deg); /* Начальная позиция */
+    }
+    25% {
+        transform: translate(-150px, 0) rotate(90deg); /* Влево и вращение */
+    }
+    50% {
+        transform: translate(-150px, -150px) rotate(180deg); /* Вверх и вращение */
+    }
+    75% {
+        transform: translate(0, -150px) rotate(270deg); /* Вправо и вращение */
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg); /* Вниз и окончательное вращение */
+    }
+}
+
+@keyframes moveAndRotate3 {
+    0% {
+        transform: translate(0, 0) rotate(0deg); /* Начальная позиция */
+    }
+    25% {
+        transform: translate(0, -150px) rotate(90deg); /* Вверх и вращение */
+    }
+    50% {
+        transform: translate(150px, -150px) rotate(180deg); /* Вправо и вращение */
+    }
+    75% {
+        transform: translate(150px, 0) rotate(270deg); /* Вниз и вращение */
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg); /* Влево и окончательное вращение */
+    }
+}
